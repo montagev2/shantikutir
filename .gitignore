@@ -32,3 +32,5 @@ dist-ssr
 *.secret
 DATABASE.md
 PROJECT_BLUEPRINT.md
+
+.vercel

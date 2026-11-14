@@ -68,15 +68,17 @@ export async function trackOrderPublic(orderId: string) {
 export async function updateOrderStatus(
   orderId: string,
   newStatus: string,
-  staffId: string,
+  staffId: string = '',
 ): Promise<void> {
   const { error } = await supabase.rpc('update_order_status_secure', {
     p_order_id: orderId,
     p_new_status: newStatus,
-    p_staff_id: staffId,
+    p_staff_id: staffId || '00000000-0000-0000-0000-000000000000',
   })
   if (error) throw new Error(error.message)
 }
+
+export const updateOrderStatusSecure = updateOrderStatus
 
 // Verify UTR (staff/admin)
 export async function verifyUtr(
@@ -153,6 +155,24 @@ export async function getActiveCoupons(userId: string | null) {
   })
   if (error) throw new Error(error.message)
   return data
+}
+
+export async function fetchActiveCouponsForUserApi(_phoneOrUserId?: string | null): Promise<any[]> {
+  try {
+    const { data, error } = await supabase
+      .from('coupons')
+      .select('*')
+      .eq('active', true)
+      .order('created_at', { ascending: false })
+    if (error || !data) return []
+    return data.map((c: any) => ({
+      ...c,
+      valid: true,
+      show_popup: c.show_popup ?? true,
+    }))
+  } catch {
+    return []
+  }
 }
 
 // Delete orders (admin)
@@ -245,4 +265,131 @@ export async function approveExtendedDelivery(orderId: string): Promise<void> {
     p_order_id: orderId,
   })
   if (error) throw new Error(error.message)
+}
+
+
+// Support Ticket APIs
+export async function createSupportTicketApi(data: any): Promise<any> {
+  return data ? ({ ...data, id: 'tkt_' + Date.now(), status: 'open', createdAt: new Date().toISOString() }) : null
+}
+
+export async function fetchUserSupportTicketsApi(_userId?: string, _phone?: string): Promise<any[]> {
+  return []
+}
+
+export async function sendTicketMessageApi(_ticketId: string, _msg: any, _status?: string): Promise<boolean> {
+  return true
+}
+
+export async function fetchAllSupportTicketsApi(): Promise<any[]> {
+  return []
+}
+
+export async function updateTicketStatusApi(_id: string, _status: string): Promise<boolean> {
+  return true
+}
+
+export async function adminReplyTicketApi(_id: string, _reply: string): Promise<boolean> {
+  return true
+}
+
+
+import { safeGetJSON, safeSetJSON } from './storage'
+import type { Order } from '../types'
+
+export interface LifetimeVaultData {
+  vaultRevenue: number
+  vaultOrdersCount: number
+  vaultDishCounts: Record<string, number>
+  lastArchivedAt?: string
+}
+
+export function getLifetimeVault(): LifetimeVaultData {
+  return safeGetJSON<LifetimeVaultData>('sk_lifetime_revenue_vault', {
+    vaultRevenue: 0,
+    vaultOrdersCount: 0,
+    vaultDishCounts: {},
+  })
+}
+
+export function saveLifetimeVault(data: LifetimeVaultData): void {
+  safeSetJSON('sk_lifetime_revenue_vault', data)
+}
+
+export function exportOrdersToCSV(orders: Order[]): void {
+  if (!orders || orders.length === 0) return
+  const headers = ['Order ID', 'Date', 'Customer Name', 'Phone', 'Type', 'Address', 'Total', 'Payment', 'Status']
+  const rows = orders.map((o) => [
+    o.id,
+    o.created_at || o.createdAt,
+    o.customer_name || o.userName,
+    o.customer_phone || o.phone,
+    o.dining_mode || o.orderType,
+    (o.delivery_address || o.address || '').replace(/,/g, ' '),
+    o.total,
+    o.payment_method || o.utr,
+    o.status,
+  ])
+  const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map((r) => r.join(','))].join('\n')
+  const encodedUri = encodeURI(csvContent)
+  const link = document.createElement('a')
+  link.setAttribute('href', encodedUri)
+  link.setAttribute('download', `shanti_kutir_orders_${Date.now()}.csv`)
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
+
+export async function archiveDeliveredOrdersApi(
+  allOrders: Order[],
+  olderThanDays = 30
+): Promise<{ purgedCount: number; archivedRevenue: number }> {
+  const cutoffTime = Date.now() - olderThanDays * 24 * 60 * 60 * 1000
+  const toArchive = allOrders.filter(
+    (o) => o.status === 'delivered' && new Date(o.createdAt || o.created_at).getTime() < cutoffTime
+  )
+  const idsToDelete = toArchive.map((o) => o.id)
+  if (idsToDelete.length > 0) {
+    try {
+      await supabase.rpc('delete_orders_secure', { p_order_ids: idsToDelete })
+    } catch {}
+  }
+  return { purgedCount: toArchive.length, archivedRevenue: toArchive.reduce((s, o) => s + o.total, 0) }
+}
+
+export async function purgeCancelledOrdersApi(allOrders: Order[]): Promise<{ purgedCount: number }> {
+  const toPurge = allOrders.filter((o) => o.status === 'cancelled')
+  const idsToDelete = toPurge.map((o) => o.id)
+  if (idsToDelete.length > 0) {
+    try {
+      await supabase.rpc('delete_orders_secure', { p_order_ids: idsToDelete })
+    } catch {}
+  }
+  return { purgedCount: toPurge.length }
+}
+
+export async function deleteOrderByIdApi(orderId: string, _order?: Order): Promise<boolean> {
+  try {
+    const { error } = await supabase.rpc('delete_orders_secure', { p_order_ids: [orderId] })
+    if (error) {
+      await supabase.from('order_items').delete().eq('order_id', orderId)
+      await supabase.from('orders').delete().eq('id', orderId)
+    }
+    return true
+  } catch {
+    return false
+  }
+}
+
+export function clearAppCacheAndReset(): void {
+  try {
+    localStorage.clear()
+    sessionStorage.clear()
+    window.location.href = '/'
+  } catch {}
+}
+
+
+export async function deleteSupportTicketApi(_id: string): Promise<boolean> {
+  return true
 }

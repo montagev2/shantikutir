@@ -4,10 +4,13 @@ import { verifyLogin, registerOrUpgrade, keepalivePing } from '../lib/api'
 import { sanitisePhone, isValidPhone, isValidPin, sanitiseName } from '../lib/security'
 
 interface AuthContextValue extends AuthState {
+  user: Profile | null
   login: (phone: string, pin: string) => Promise<void>
   register: (phone: string, pin: string, name: string) => Promise<void>
   logout: () => void
   clearError: () => void
+  updateOwnName: (name: string) => Promise<{ ok: boolean }>
+  updateOwnPin: (newPin: string) => Promise<{ ok: boolean }>
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null)
@@ -99,8 +102,33 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setState(s => ({ ...s, error: null }))
   }
 
+  async function updateOwnName(name: string): Promise<{ ok: boolean }> {
+    if (!state.profile) return { ok: false }
+    try {
+      const { updateOwnProfile } = await import('../lib/api')
+      await updateOwnProfile(state.profile.id, name)
+      const updated = { ...state.profile, name }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated))
+      setState(s => ({ ...s, profile: updated }))
+      return { ok: true }
+    } catch {
+      return { ok: false }
+    }
+  }
+
+  async function updateOwnPin(newPinVal: string): Promise<{ ok: boolean }> {
+    if (!state.profile) return { ok: false }
+    try {
+      const { updateOwnPin: apiUpdatePin } = await import('../lib/api')
+      await apiUpdatePin(state.profile.id, '', newPinVal)
+      return { ok: true }
+    } catch {
+      return { ok: false }
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ ...state, login, register, logout, clearError }}>
+    <AuthContext.Provider value={{ ...state, user: state.profile, login, register, logout, clearError, updateOwnName, updateOwnPin }}>
       {children}
     </AuthContext.Provider>
   )

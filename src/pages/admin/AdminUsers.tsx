@@ -14,91 +14,200 @@ export default function AdminUsers() {
     try {
       const data = await getAllUsersStaff()
       setUsers((data ?? []) as Profile[])
-    } catch (err) {
-      showToast('Failed to load users', 'error')
+    } catch {
+      showToast('Failed to load user accounts', 'error')
     } finally {
       setLoading(false)
     }
   }
 
-  useEffect(() => { fetchUsers() }, [])
+  useEffect(() => {
+    fetchUsers()
+  }, [])
 
   async function handleDelete(userId: string) {
-    if (!confirm('Delete this user permanently?')) return
+    if (!confirm('Are you sure you want to permanently delete this user account?')) return
     try {
       await adminDeleteUser(userId)
-      showToast('User deleted', 'success')
+      showToast('User account removed', 'success')
       fetchUsers()
     } catch (err) {
-      showToast(err instanceof Error ? err.message : 'Failed', 'error')
+      showToast(err instanceof Error ? err.message : 'Deletion failed', 'error')
     }
   }
 
   async function handleCreateStaff(e: React.FormEvent) {
     e.preventDefault()
-    if (!newStaff.phone || !newStaff.name || !newStaff.pin) { showToast('All fields required', 'error'); return }
+    if (!newStaff.phone || !newStaff.name || !newStaff.pin) {
+      showToast('All fields are required', 'error')
+      return
+    }
     setCreating(true)
     try {
-      await adminCreateStaff({ p_phone: newStaff.phone, p_name: newStaff.name, p_pin: newStaff.pin, p_role: newStaff.role })
-      showToast('Staff created', 'success')
+      await adminCreateStaff({
+        p_phone: newStaff.phone,
+        p_name: newStaff.name,
+        p_pin: newStaff.pin,
+        p_role: newStaff.role,
+      })
+      showToast(`Staff member ${newStaff.name} created successfully`, 'success')
       setNewStaff({ phone: '', name: '', pin: '', role: 'staff' })
       fetchUsers()
     } catch (err) {
-      showToast(err instanceof Error ? err.message : 'Failed', 'error')
+      showToast(err instanceof Error ? err.message : 'Staff creation failed', 'error')
     } finally {
       setCreating(false)
     }
   }
 
   return (
-    <div style={{ padding: '1rem', background: 'var(--color-bg)', minHeight: '100vh' }}>
+    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
       {toast && <Toast key={toast.key} message={toast.message} type={toast.type} onClose={hideToast} />}
-      <h2 style={{ fontFamily: 'Playfair Display, serif', color: 'var(--color-terracotta)', margin: '0 0 1rem' }}>Users & Staff</h2>
+
+      <div style={{ marginBottom: '1.5rem' }}>
+        <h2 style={{ fontSize: '1.6rem', color: '#fff', margin: 0 }}>Staff & Customer Accounts</h2>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: '0.2rem 0 0' }}>
+          Grant kitchen staff or admin access, manage customer PIN logins
+        </p>
+      </div>
 
       {/* Create staff form */}
-      <form onSubmit={handleCreateStaff} style={{ background: '#fff', borderRadius: '0.75rem', padding: '1rem', boxShadow: '0 1px 6px rgba(0,0,0,0.06)', marginBottom: '1.25rem' }}>
-        <h3 style={{ margin: '0 0 0.75rem', fontFamily: 'Playfair Display, serif', color: 'var(--color-teak)', fontSize: '1rem' }}>Add Staff</h3>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-          {(['phone', 'name', 'pin'] as const).map(field => (
+      <form
+        onSubmit={handleCreateStaff}
+        className="glass-panel"
+        style={{
+          borderRadius: 'var(--radius-md)',
+          padding: '1.25rem',
+          marginBottom: '1.75rem',
+        }}
+      >
+        <h3 style={{ margin: '0 0 1rem', fontSize: '1.05rem', color: 'var(--gold)' }}>
+          ➕ Add New Staff or Kitchen Member
+        </h3>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem', marginBottom: '1rem' }}>
+          <div>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+              Full Name
+            </label>
             <input
-              key={field}
-              type={field === 'pin' ? 'password' : 'text'}
-              placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-              value={newStaff[field]}
-              onChange={e => setNewStaff(s => ({ ...s, [field]: e.target.value }))}
-              maxLength={field === 'pin' ? 4 : 60}
-              style={{ flex: '1 1 8rem', border: '1.5px solid #e7e5e4', borderRadius: '0.4rem', padding: '0.5rem 0.75rem', fontSize: '0.9rem', fontFamily: 'Inter, sans-serif' }}
+              type="text"
+              placeholder="e.g. Ramesh Ghosh"
+              value={newStaff.name}
+              onChange={(e) => setNewStaff((s) => ({ ...s, name: e.target.value }))}
+              style={{ width: '100%', padding: '0.6rem 0.8rem' }}
             />
-          ))}
-          <select
-            value={newStaff.role}
-            onChange={e => setNewStaff(s => ({ ...s, role: e.target.value }))}
-            style={{ flex: '1 1 7rem', border: '1.5px solid #e7e5e4', borderRadius: '0.4rem', padding: '0.5rem 0.75rem', fontSize: '0.9rem' }}
-          >
-            <option value="staff">Staff</option>
-            <option value="admin">Admin</option>
-          </select>
-          <button type="submit" disabled={creating} style={{ background: 'var(--color-terracotta)', color: '#fff', border: 'none', borderRadius: '0.4rem', padding: '0.5rem 1rem', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer' }}>
-            {creating ? '...' : 'Add'}
-          </button>
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+              Mobile Number
+            </label>
+            <input
+              type="tel"
+              placeholder="10-digit phone"
+              value={newStaff.phone}
+              onChange={(e) => setNewStaff((s) => ({ ...s, phone: e.target.value }))}
+              maxLength={13}
+              style={{ width: '100%', padding: '0.6rem 0.8rem' }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+              4-Digit PIN
+            </label>
+            <input
+              type="password"
+              placeholder="••••"
+              value={newStaff.pin}
+              onChange={(e) => setNewStaff((s) => ({ ...s, pin: e.target.value.replace(/\D/g, '').slice(0, 4) }))}
+              maxLength={4}
+              style={{ width: '100%', padding: '0.6rem 0.8rem', textAlign: 'center', letterSpacing: '0.2em' }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+              Role
+            </label>
+            <select
+              value={newStaff.role}
+              onChange={(e) => setNewStaff((s) => ({ ...s, role: e.target.value }))}
+              style={{ width: '100%', padding: '0.6rem 0.8rem' }}
+            >
+              <option value="staff">Kitchen Staff</option>
+              <option value="admin">Store Admin</option>
+            </select>
+          </div>
         </div>
+
+        <button className="btn-gold" type="submit" disabled={creating} style={{ padding: '0.65rem 1.4rem' }}>
+          {creating ? 'Creating...' : 'Create Account'}
+        </button>
       </form>
 
-      {loading && <p style={{ color: '#78716c' }}>Loading...</p>}
-      {users.map(u => (
-        <div key={u.id} style={{ background: '#fff', borderRadius: '0.6rem', padding: '0.75rem 1rem', boxShadow: '0 1px 4px rgba(0,0,0,0.05)', marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <span style={{ fontWeight: 700, color: 'var(--color-teak)', fontSize: '0.9rem' }}>{u.name ?? '—'}</span>
-            <span style={{ marginLeft: '0.75rem', fontSize: '0.8rem', color: '#78716c' }}>{u.phone}</span>
-            <span style={{ marginLeft: '0.5rem', fontSize: '0.75rem', background: u.role === 'admin' ? '#c2410c' : u.role === 'staff' ? '#d97706' : '#e7e5e4', color: u.role === 'customer' ? '#57534e' : '#fff', borderRadius: '999px', padding: '0.1rem 0.5rem' }}>{u.role}</span>
+      {/* Users table */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+        {loading && <p style={{ color: 'var(--text-muted)' }}>Loading accounts...</p>}
+        {users.map((u) => (
+          <div
+            key={u.id}
+            className="glass-panel"
+            style={{
+              padding: '0.85rem 1.25rem',
+              borderRadius: 'var(--radius-sm)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <div>
+              <span style={{ fontWeight: 700, color: '#fff', fontSize: '0.95rem' }}>{u.name || 'Anonymous Customer'}</span>
+              <span style={{ marginLeft: '0.85rem', color: 'var(--text-muted)', fontSize: '0.85rem' }}>{u.phone}</span>
+              <span
+                style={{
+                  marginLeft: '0.75rem',
+                  fontSize: '0.72rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  padding: '0.15rem 0.55rem',
+                  borderRadius: 'var(--radius-full)',
+                  background:
+                    u.role === 'admin'
+                      ? 'rgba(245, 158, 11, 0.2)'
+                      : u.role === 'staff'
+                      ? 'rgba(194, 65, 12, 0.2)'
+                      : 'rgba(255, 255, 255, 0.08)',
+                  color: u.role === 'admin' ? 'var(--gold)' : u.role === 'staff' ? 'var(--primary)' : 'var(--text-muted)',
+                  border: `1px solid ${
+                    u.role === 'admin' ? 'var(--gold)' : u.role === 'staff' ? 'var(--primary)' : 'transparent'
+                  }`,
+                }}
+              >
+                {u.role}
+              </span>
+            </div>
+
+            {u.role !== 'admin' && (
+              <button
+                onClick={() => handleDelete(u.id)}
+                style={{
+                  background: 'rgba(239, 68, 68, 0.12)',
+                  color: 'var(--rose)',
+                  border: '1px solid rgba(239, 68, 68, 0.25)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '0.35rem 0.75rem',
+                  fontSize: '0.78rem',
+                  fontWeight: 600,
+                }}
+              >
+                Delete
+              </button>
+            )}
           </div>
-          {u.role !== 'admin' && (
-            <button onClick={() => handleDelete(u.id)} style={{ background: '#fee2e2', color: '#c2410c', border: 'none', borderRadius: '0.4rem', padding: '0.3rem 0.6rem', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer' }}>
-              Delete
-            </button>
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }

@@ -1,109 +1,183 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { trackOrderPublic } from '../lib/api'
+import { STORE_NAME, SUPPORT_PHONE } from '../lib/business'
+import { Toast, useToast } from '../components/Toast'
+
+const STEPS = [
+  { key: 'pending', label: 'Order Placed', desc: 'Sent to Shanti Kutir kitchen' },
+  { key: 'confirmed', label: 'Confirmed', desc: 'Kitchen accepted the order' },
+  { key: 'preparing', label: 'Cooking', desc: 'Slow-cooking Dum Biryani & Tandoor' },
+  { key: 'ready', label: 'Food Ready', desc: 'Packed hot for pickup or dispatch' },
+  { key: 'delivered', label: 'Completed', desc: 'Delivered / Handed over' },
+]
 
 export default function TrackOrder() {
   const { state } = useLocation()
   const [orderId, setOrderId] = useState<string>(state?.orderId ?? '')
-  const [orderData, setOrderData] = useState<Record<string, unknown> | null>(null)
+  const [orderData, setOrderData] = useState<any>(null)
   const [busy, setBusy] = useState(false)
-  const [error, setError] = useState('')
+  const { toast, showToast, hideToast } = useToast()
 
-  async function handleTrack() {
-    if (!orderId.trim()) { setError('Please enter an order ID'); return }
-    setError('')
+  async function fetchStatus(id: string) {
+    if (!id.trim()) return
     setBusy(true)
     try {
-      const data = await trackOrderPublic(orderId.trim().toUpperCase())
-      setOrderData(data as Record<string, unknown>)
+      const data = await trackOrderPublic(id.trim().toUpperCase())
+      setOrderData(data)
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Order not found')
+      showToast(err instanceof Error ? err.message : 'Order not found', 'error')
     } finally {
       setBusy(false)
     }
   }
 
-  const STATUS_COLORS: Record<string, string> = {
-    pending: '#d97706',
-    confirmed: '#2563eb',
-    preparing: '#7c3aed',
-    ready: '#0891b2',
-    delivered: '#65a30d',
-    cancelled: '#c2410c',
-  }
+  useEffect(() => {
+    if (state?.orderId) {
+      fetchStatus(state.orderId)
+    }
+  }, [state])
+
+  // Polling every 12 seconds when tracking
+  useEffect(() => {
+    if (!orderId || !orderData || orderData.status === 'delivered' || orderData.status === 'cancelled') return
+    const interval = setInterval(() => {
+      fetchStatus(orderId)
+    }, 12000)
+    return () => clearInterval(interval)
+  }, [orderId, orderData])
+
+  const currentStepIdx = orderData ? STEPS.findIndex((s) => s.key === orderData.status) : -1
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-bg)', padding: '1.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ width: '100%', maxWidth: '480px' }}>
-        <h2 style={{ fontFamily: 'Playfair Display, serif', color: 'var(--color-terracotta)', marginBottom: '1.5rem', textAlign: 'center' }}>
-          Track Your Order
-        </h2>
-        <div style={{ background: '#fff', borderRadius: '0.75rem', padding: '1.25rem', boxShadow: '0 1px 6px rgba(0,0,0,0.07)', marginBottom: '1rem' }}>
+    <div className="site-container animate-fade-in" style={{ paddingTop: '2.5rem', maxWidth: '640px' }}>
+      {toast && <Toast key={toast.key} message={toast.message} type={toast.type} onClose={hideToast} />}
+
+      <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <h1 style={{ fontSize: '2rem', color: '#fff', margin: '0 0 0.5rem' }}>Live Order Tracker</h1>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: 0 }}>
+          Follow your authentic Bengali meal in real-time at {STORE_NAME}
+        </p>
+      </div>
+
+      {/* ── Search Input ── */}
+      <div className="glass-panel" style={{ padding: '1.25rem', borderRadius: 'var(--radius-lg)', marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', gap: '0.65rem' }}>
           <input
             type="text"
-            placeholder="Enter order ID (e.g. SK-1411-123)"
+            placeholder="Enter Order ID (e.g. SK-1411-123)"
             value={orderId}
-            onChange={e => setOrderId(e.target.value.toUpperCase())}
-            style={inputStyle}
+            onChange={(e) => setOrderId(e.target.value.toUpperCase())}
+            style={{
+              flex: 1,
+              padding: '0.75rem 1rem',
+              fontSize: '1rem',
+              fontWeight: 700,
+              letterSpacing: '0.05em',
+            }}
           />
           <button
-            onClick={handleTrack}
-            disabled={busy}
-            style={{ ...primaryBtnStyle, marginTop: '0.75rem', width: '100%' }}
+            className="btn-gold"
+            onClick={() => fetchStatus(orderId)}
+            disabled={busy || !orderId.trim()}
+            style={{ padding: '0.75rem 1.4rem', whiteSpace: 'nowrap' }}
           >
-            {busy ? 'Searching...' : 'Track Order'}
+            {busy ? 'Searching...' : 'Track'}
           </button>
-          {error && <p style={{ color: '#c2410c', fontSize: '0.88rem', marginTop: '0.5rem', textAlign: 'center' }}>{error}</p>}
         </div>
-
-        {orderData && (
-          <div style={{ background: '#fff', borderRadius: '0.75rem', padding: '1.25rem', boxShadow: '0 1px 6px rgba(0,0,0,0.07)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-              <strong style={{ fontFamily: 'Playfair Display, serif', color: 'var(--color-teak)' }}>
-                {String(orderData.id)}
-              </strong>
-              <span style={{
-                background: STATUS_COLORS[String(orderData.status)] ?? '#78716c',
-                color: '#fff',
-                borderRadius: '999px',
-                padding: '0.2rem 0.75rem',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                textTransform: 'capitalize',
-              }}>
-                {String(orderData.status)}
-              </span>
-            </div>
-            <p style={{ color: '#78716c', fontSize: '0.9rem', margin: 0 }}>
-              Total: <strong>Rs. {String(orderData.total)}</strong>
-            </p>
-          </div>
-        )}
       </div>
+
+      {/* ── Order Status Details ── */}
+      {orderData && (
+        <div className="glass-panel animate-pop-in" style={{ borderRadius: 'var(--radius-lg)', padding: '1.5rem', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--glass-border)', paddingBottom: '1rem', marginBottom: '1.5rem' }}>
+            <div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Order ID</div>
+              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--gold)', fontFamily: 'var(--font-serif)' }}>
+                {orderData.id}
+              </div>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Total Amount</div>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fff' }}>
+                ₹{orderData.total}
+              </div>
+            </div>
+          </div>
+
+          {/* Stepper Timeline */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', position: 'relative', paddingLeft: '1.5rem', marginBottom: '1.5rem' }}>
+            {/* Vertical Line */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '12px',
+                bottom: '12px',
+                left: '26px',
+                width: '3px',
+                background: 'rgba(255, 255, 255, 0.08)',
+                zIndex: 1,
+              }}
+            />
+
+            {STEPS.map((step, idx) => {
+              const isPast = currentStepIdx > idx
+              const isCurrent = currentStepIdx === idx
+
+              return (
+                <div key={step.key} style={{ display: 'flex', alignItems: 'flex-start', gap: '1.25rem', position: 'relative', zIndex: 2 }}>
+                  <div
+                    style={{
+                      width: '26px',
+                      height: '26px',
+                      borderRadius: '50%',
+                      background: isPast
+                        ? 'var(--emerald)'
+                        : isCurrent
+                        ? 'var(--gold)'
+                        : 'var(--surface-2)',
+                      border: `3px solid ${isCurrent ? 'var(--gold-glow)' : 'var(--bg-main)'}`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: isPast || isCurrent ? '#0c0b0a' : 'var(--text-muted)',
+                      fontSize: '0.75rem',
+                      fontWeight: 900,
+                      boxShadow: isCurrent ? '0 0 16px var(--gold)' : 'none',
+                      flexShrink: 0,
+                    }}
+                  >
+                    {isPast ? '✓' : idx + 1}
+                  </div>
+                  <div>
+                    <div style={{ fontWeight: isCurrent ? 800 : 600, fontSize: '0.98rem', color: isCurrent ? 'var(--gold)' : isPast ? '#fff' : 'var(--text-muted)' }}>
+                      {step.label}
+                    </div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-faint)', marginTop: '0.15rem' }}>
+                      {step.desc}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Quick Help & Call Button */}
+          <div style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '1.25rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
+              Need urgent updates on your order?
+            </span>
+            <a
+              href={`tel:${SUPPORT_PHONE}`}
+              className="btn-ghost"
+              style={{ fontSize: '0.82rem', display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+            >
+              <span></span>
+              <span>Call Restaurant</span>
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   )
-}
-
-const inputStyle: React.CSSProperties = {
-  border: '1.5px solid #e7e5e4',
-  borderRadius: '0.5rem',
-  padding: '0.7rem 1rem',
-  fontSize: '0.95rem',
-  fontFamily: 'Inter, sans-serif',
-  color: 'var(--color-teak)',
-  background: 'var(--color-bg)',
-  width: '100%',
-  boxSizing: 'border-box',
-}
-
-const primaryBtnStyle: React.CSSProperties = {
-  background: 'var(--color-terracotta)',
-  color: '#fff',
-  border: 'none',
-  borderRadius: '0.5rem',
-  padding: '0.8rem',
-  fontSize: '0.95rem',
-  fontWeight: 700,
-  cursor: 'pointer',
-  fontFamily: 'Inter, sans-serif',
 }

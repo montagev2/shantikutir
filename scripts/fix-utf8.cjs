@@ -1,0 +1,89 @@
+const fs = require('fs')
+const path = require('path')
+
+// 1. Fix public/sk-logo.svg
+const skLogoSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <!-- Background Gradients -->
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#2a241e" />
+      <stop offset="60%" stop-color="#14110e" />
+      <stop offset="100%" stop-color="#0c0a08" />
+    </radialGradient>
+    
+    <!-- Gold Metallic Gradients -->
+    <linearGradient id="goldMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="25%" stop-color="#f59e0b" />
+      <stop offset="50%" stop-color="#d97706" />
+      <stop offset="75%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#b45309" />
+    </linearGradient>
+
+    <linearGradient id="terracottaGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ea580c" />
+      <stop offset="100%" stop-color="#9a3412" />
+    </linearGradient>
+
+    <!-- Drop Shadow Filter -->
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.8" />
+    </filter>
+  </defs>
+
+  <!-- Outer Ring Base -->
+  <circle cx="250" cy="250" r="240" fill="url(#bgGlow)" stroke="url(#goldMetallic)" stroke-width="4" />
+  
+  <!-- Intricate Concentric Beaded Border -->
+  <circle cx="250" cy="250" r="226" fill="none" stroke="url(#goldMetallic)" stroke-width="1.5" stroke-dasharray="3, 5" opacity="0.85" />
+  <circle cx="250" cy="250" r="218" fill="none" stroke="url(#goldMetallic)" stroke-width="2" />
+  <circle cx="250" cy="250" r="162" fill="none" stroke="url(#goldMetallic)" stroke-width="1.5" stroke-opacity="0.6" />
+
+  <!-- Heritage Kutir (Cottage Canopy & Royal Clay Pot) Center Emblem -->
+  <g filter="url(#subtleShadow)">
+    <!-- Cottage Roof / Traditional Canopy -->
+    <path d="M 250,110 L 325,160 L 175,160 Z" fill="url(#goldMetallic)" />
+    <path d="M 250,96 L 254,108 L 246,108 Z" fill="url(#goldMetallic)" />
+    
+    <!-- Terracotta Archway Underneath -->
+    <path d="M 185,165 Q 250,140 315,165 L 315,178 Q 250,154 185,178 Z" fill="url(#terracottaGlow)" />
+    
+    <!-- Royal Monogram "SK" -->
+    <text x="250" y="275" font-family="'Cinzel', Georgia, serif" font-size="108" font-weight="900" fill="url(#goldMetallic)" text-anchor="middle" letter-spacing="4" filter="url(#goldGlow)">SK</text>
+
+    <!-- Authentic Bengali Script Inscription -->
+    <text x="250" y="322" font-family="'Hind Siliguri', 'Segoe UI', sans-serif" font-size="28" font-weight="700" fill="#fef08a" text-anchor="middle" letter-spacing="2">শান্তিকুটির</text>
+
+    <!-- Decorative Stars & Lotus Divider -->
+    <circle cx="195" cy="314" r="3.5" fill="url(#goldMetallic)" />
+    <circle cx="305" cy="314" r="3.5" fill="url(#goldMetallic)" />
+    
+    <path d="M 220,344 Q 250,336 280,344 Q 250,350 220,344 Z" fill="url(#goldMetallic)" opacity="0.9" />
+    <circle cx="250" cy="344" r="2.5" fill="#fef08a" />
+  </g>
+
+  <!-- Circular Upper Text: SHANTI KUTIR -->
+  <path id="textArcTop" d="M 75,250 A 175,175 0 0,1 425,250" fill="none" />
+  <text font-family="'Cinzel', Georgia, serif" font-size="22" font-weight="800" fill="url(#goldMetallic)" letter-spacing="5">
+    <textPath href="#textArcTop" startOffset="50%" text-anchor="middle">
+      * SHANTI KUTIR *
+    </textPath>
+  </text>
+
+  <!-- Circular Lower Text: HERITAGE DINING & RESORT -->
+  <path id="textArcBottom" d="M 425,250 A 175,175 0 0,1 75,250" fill="none" />
+  <text font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14.5" font-weight="800" fill="#e7e5e4" letter-spacing="4" opacity="0.95">
+    <textPath href="#textArcBottom" startOffset="50%" text-anchor="middle">
+      HERITAGE RESORT &amp; CHARCOAL TANDOOR
+    </textPath>
+  </text>
+</svg>
+`
+
+fs.writeFileSync(path.join(__dirname, '../public/sk-logo.svg'), skLogoSvg, 'utf8')
+fs.writeFileSync(path.join(__dirname, '../public/favicon.svg'), skLogoSvg, 'utf8')
+console.log('Fixed sk-logo.svg and favicon.svg')

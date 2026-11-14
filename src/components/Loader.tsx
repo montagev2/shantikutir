@@ -1,8 +1,9 @@
+
 interface LoaderProps {
   text?: string
 }
 
-export function Loader({ text = 'Loading...' }: LoaderProps) {
+export function Loader({ text = 'Preparing Culinary Experience...' }: LoaderProps) {
   return (
     <div
       style={{
@@ -10,23 +11,26 @@ export function Loader({ text = 'Loading...' }: LoaderProps) {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '40vh',
-        gap: '1rem',
-        color: '#c2410c',
-        fontFamily: 'Inter, sans-serif',
+        minHeight: '45vh',
+        gap: '1.25rem',
+        color: 'var(--gold)',
+        fontFamily: 'var(--font-sans)',
       }}
     >
       <div
         style={{
-          width: '2.5rem',
-          height: '2.5rem',
-          border: '4px solid #fbfaf7',
-          borderTop: '4px solid #c2410c',
+          width: '3.2rem',
+          height: '3.2rem',
+          border: '3px solid rgba(245, 158, 11, 0.15)',
+          borderTop: '3px solid var(--gold)',
           borderRadius: '50%',
-          animation: 'spin 0.8s linear infinite',
+          animation: 'spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite',
+          boxShadow: '0 0 20px rgba(245, 158, 11, 0.25)',
         }}
       />
-      <span style={{ fontSize: '0.95rem', color: '#78716c' }}>{text}</span>
+      <span style={{ fontSize: '0.95rem', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.02em' }}>
+        {text}
+      </span>
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   )

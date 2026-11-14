@@ -6,7 +6,14 @@ import type { Coupon } from '../../types'
 export default function AdminCoupons() {
   const [coupons, setCoupons] = useState<Coupon[]>([])
   const { toast, showToast, hideToast } = useToast()
-  const [form, setForm] = useState({ code: '', discount_type: 'flat', discount_value: '', min_order: '0', max_uses: '', expires_at: '' })
+  const [form, setForm] = useState({
+    code: '',
+    discount_type: 'flat',
+    discount_value: '',
+    min_order: '150',
+    max_uses: '',
+    expires_at: '',
+  })
   const [creating, setCreating] = useState(false)
 
   async function fetchCoupons() {
@@ -18,11 +25,16 @@ export default function AdminCoupons() {
     }
   }
 
-  useEffect(() => { fetchCoupons() }, [])
+  useEffect(() => {
+    fetchCoupons()
+  }, [])
 
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault()
-    if (!form.code || !form.discount_value) { showToast('Code and value required', 'error'); return }
+    if (!form.code || !form.discount_value) {
+      showToast('Coupon code and discount value required', 'error')
+      return
+    }
     setCreating(true)
     try {
       await adminCreateCoupon({
@@ -33,11 +45,18 @@ export default function AdminCoupons() {
         p_max_uses: form.max_uses ? parseInt(form.max_uses) : null,
         p_expires_at: form.expires_at || null,
       })
-      showToast('Coupon created', 'success')
-      setForm({ code: '', discount_type: 'flat', discount_value: '', min_order: '0', max_uses: '', expires_at: '' })
+      showToast(`Coupon ${form.code} created!`, 'success')
+      setForm({
+        code: '',
+        discount_type: 'flat',
+        discount_value: '',
+        min_order: '150',
+        max_uses: '',
+        expires_at: '',
+      })
       fetchCoupons()
     } catch (err) {
-      showToast(err instanceof Error ? err.message : 'Failed', 'error')
+      showToast(err instanceof Error ? err.message : 'Coupon creation failed', 'error')
     } finally {
       setCreating(false)
     }
@@ -48,73 +67,183 @@ export default function AdminCoupons() {
       await adminToggleCoupon(id)
       fetchCoupons()
     } catch (err) {
-      showToast(err instanceof Error ? err.message : 'Failed', 'error')
+      showToast(err instanceof Error ? err.message : 'Toggle failed', 'error')
     }
   }
 
   async function handleDelete(id: string) {
-    if (!confirm('Delete this coupon?')) return
+    if (!confirm('Permanently delete this coupon?')) return
     try {
       await adminDeleteCoupon(id)
+      showToast('Coupon deleted', 'success')
       fetchCoupons()
     } catch (err) {
-      showToast(err instanceof Error ? err.message : 'Failed', 'error')
+      showToast(err instanceof Error ? err.message : 'Delete failed', 'error')
     }
   }
 
   return (
-    <div style={{ padding: '1rem', background: 'var(--color-bg)', minHeight: '100vh' }}>
+    <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
       {toast && <Toast key={toast.key} message={toast.message} type={toast.type} onClose={hideToast} />}
-      <h2 style={{ fontFamily: 'Playfair Display, serif', color: 'var(--color-terracotta)', margin: '0 0 1rem' }}>Coupons</h2>
 
-      <form onSubmit={handleCreate} style={{ background: '#fff', borderRadius: '0.75rem', padding: '1rem', boxShadow: '0 1px 6px rgba(0,0,0,0.06)', marginBottom: '1.25rem' }}>
-        <h3 style={{ margin: '0 0 0.75rem', fontFamily: 'Playfair Display, serif', color: 'var(--color-teak)', fontSize: '1rem' }}>New Coupon</h3>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-          <input placeholder="Code" value={form.code} onChange={e => setForm(f => ({ ...f, code: e.target.value }))} style={inputStyle} />
-          <select value={form.discount_type} onChange={e => setForm(f => ({ ...f, discount_type: e.target.value }))} style={inputStyle}>
-            <option value="flat">Flat (Rs.)</option>
-            <option value="percent">Percent (%)</option>
-          </select>
-          <input type="number" placeholder="Value" value={form.discount_value} onChange={e => setForm(f => ({ ...f, discount_value: e.target.value }))} style={inputStyle} />
-          <input type="number" placeholder="Min order" value={form.min_order} onChange={e => setForm(f => ({ ...f, min_order: e.target.value }))} style={inputStyle} />
-          <input type="number" placeholder="Max uses (blank=unlimited)" value={form.max_uses} onChange={e => setForm(f => ({ ...f, max_uses: e.target.value }))} style={inputStyle} />
-          <input type="date" value={form.expires_at} onChange={e => setForm(f => ({ ...f, expires_at: e.target.value }))} style={inputStyle} />
-          <button type="submit" disabled={creating} style={{ background: 'var(--color-terracotta)', color: '#fff', border: 'none', borderRadius: '0.4rem', padding: '0.5rem 1rem', fontSize: '0.9rem', fontWeight: 600, cursor: 'pointer' }}>
-            {creating ? '...' : 'Create'}
-          </button>
+      <div style={{ marginBottom: '1.5rem' }}>
+        <h2 style={{ fontSize: '1.6rem', color: '#fff', margin: 0 }}>Promotions & Coupons</h2>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', margin: '0.2rem 0 0' }}>
+          Create highway discount codes, percent off deals, and welcome offers
+        </p>
+      </div>
+
+      <form
+        onSubmit={handleCreate}
+        className="glass-panel"
+        style={{
+          borderRadius: 'var(--radius-md)',
+          padding: '1.25rem',
+          marginBottom: '1.75rem',
+        }}
+      >
+        <h3 style={{ margin: '0 0 1rem', fontSize: '1.05rem', color: 'var(--gold)' }}>
+          ️ Create Promotional Code
+        </h3>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem', marginBottom: '1rem' }}>
+          <div>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+              Coupon Code
+            </label>
+            <input
+              type="text"
+              placeholder="e.g. WELCOME50"
+              value={form.code}
+              onChange={(e) => setForm((f) => ({ ...f, code: e.target.value.toUpperCase() }))}
+              style={{ width: '100%', padding: '0.6rem 0.8rem', fontWeight: 800 }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+              Discount Type
+            </label>
+            <select
+              value={form.discount_type}
+              onChange={(e) => setForm((f) => ({ ...f, discount_type: e.target.value }))}
+              style={{ width: '100%', padding: '0.6rem 0.8rem' }}
+            >
+              <option value="flat">Flat Cash (₹)</option>
+              <option value="percent">Percentage (%)</option>
+            </select>
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+              Value ({form.discount_type === 'flat' ? '₹' : '%'})
+            </label>
+            <input
+              type="number"
+              placeholder="e.g. 50 or 15"
+              value={form.discount_value}
+              onChange={(e) => setForm((f) => ({ ...f, discount_value: e.target.value }))}
+              style={{ width: '100%', padding: '0.6rem 0.8rem' }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+              Min Order (₹)
+            </label>
+            <input
+              type="number"
+              placeholder="e.g. 200"
+              value={form.min_order}
+              onChange={(e) => setForm((f) => ({ ...f, min_order: e.target.value }))}
+              style={{ width: '100%', padding: '0.6rem 0.8rem' }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+              Expiry Date (Optional)
+            </label>
+            <input
+              type="date"
+              value={form.expires_at}
+              onChange={(e) => setForm((f) => ({ ...f, expires_at: e.target.value }))}
+              style={{ width: '100%', padding: '0.6rem 0.8rem' }}
+            />
+          </div>
         </div>
+
+        <button className="btn-gold" type="submit" disabled={creating} style={{ padding: '0.65rem 1.4rem' }}>
+          {creating ? 'Creating...' : 'Publish Coupon'}
+        </button>
       </form>
 
-      {coupons.map(c => (
-        <div key={c.id} style={{ background: '#fff', borderRadius: '0.6rem', padding: '0.75rem 1rem', boxShadow: '0 1px 4px rgba(0,0,0,0.05)', marginBottom: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div>
-            <span style={{ fontWeight: 700, color: 'var(--color-teak)', fontFamily: 'Playfair Display, serif' }}>{c.code}</span>
-            <span style={{ marginLeft: '0.75rem', fontSize: '0.82rem', color: '#78716c' }}>
-              {c.discount_type === 'flat' ? `Rs. ${c.discount_value} off` : `${c.discount_value}% off`} · min Rs. {c.min_order}
-            </span>
-            <span style={{ marginLeft: '0.5rem', fontSize: '0.75rem', background: c.active ? '#d1fae5' : '#fee2e2', color: c.active ? '#065f46' : '#c2410c', borderRadius: '999px', padding: '0.1rem 0.5rem' }}>
-              {c.active ? 'Active' : 'Inactive'}
-            </span>
+      {/* Coupons List */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+        {coupons.map((c) => (
+          <div
+            key={c.id}
+            className="glass-panel"
+            style={{
+              padding: '0.85rem 1.25rem',
+              borderRadius: 'var(--radius-sm)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            <div>
+              <span style={{ fontFamily: 'var(--font-serif)', fontWeight: 800, color: 'var(--gold)', fontSize: '1.1rem' }}>
+                {c.code}
+              </span>
+              <span style={{ marginLeft: '1rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                {c.discount_type === 'flat' ? `₹${c.discount_value} OFF` : `${c.discount_value}% OFF`}
+                <span style={{ color: 'var(--text-muted)', marginLeft: '0.5rem' }}>
+                  (Min Order: ₹{c.min_order})
+                </span>
+              </span>
+              <span
+                style={{
+                  marginLeft: '0.75rem',
+                  fontSize: '0.72rem',
+                  padding: '0.15rem 0.55rem',
+                  borderRadius: 'var(--radius-full)',
+                  fontWeight: 700,
+                  background: c.active ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                  color: c.active ? 'var(--emerald)' : 'var(--rose)',
+                  border: `1px solid ${c.active ? 'var(--emerald)' : 'var(--rose)'}`,
+                }}
+              >
+                {c.active ? 'ACTIVE' : 'INACTIVE'}
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <button
+                className="btn-ghost"
+                onClick={() => c.id && handleToggle(c.id)}
+                style={{ padding: '0.35rem 0.75rem', fontSize: '0.78rem' }}
+              >
+                Toggle
+              </button>
+              <button
+                onClick={() => c.id && handleDelete(c.id)}
+                style={{
+                  background: 'rgba(239, 68, 68, 0.12)',
+                  color: 'var(--rose)',
+                  border: '1px solid rgba(239, 68, 68, 0.25)',
+                  borderRadius: 'var(--radius-sm)',
+                  padding: '0.35rem 0.75rem',
+                  fontSize: '0.78rem',
+                  fontWeight: 600,
+                }}
+              >
+                Delete
+              </button>
+            </div>
           </div>
-          <div style={{ display: 'flex', gap: '0.4rem' }}>
-            <button onClick={() => handleToggle(c.id)} style={{ background: '#fff3e0', color: '#a8734e', border: 'none', borderRadius: '0.4rem', padding: '0.3rem 0.6rem', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer' }}>
-              Toggle
-            </button>
-            <button onClick={() => handleDelete(c.id)} style={{ background: '#fee2e2', color: '#c2410c', border: 'none', borderRadius: '0.4rem', padding: '0.3rem 0.6rem', fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer' }}>
-              Delete
-            </button>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
-}
-
-const inputStyle: React.CSSProperties = {
-  flex: '1 1 8rem',
-  border: '1.5px solid #e7e5e4',
-  borderRadius: '0.4rem',
-  padding: '0.5rem 0.75rem',
-  fontSize: '0.9rem',
-  fontFamily: 'Inter, sans-serif',
 }
