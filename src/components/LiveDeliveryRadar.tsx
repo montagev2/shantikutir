@@ -213,10 +213,10 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
       default:
         return {
           label: 'Awaiting Kitchen Approval',
-          color: '#fbbf24',
-          bg: 'rgba(245, 158, 11, 0.18)',
-          border: 'rgba(245, 158, 11, 0.4)',
-          dot: '#f59e0b',
+          color: '#f3d085',
+          bg: 'rgba(223, 177, 91, 0.18)',
+          border: 'rgba(223, 177, 91, 0.4)',
+          dot: '#dfb15b',
         }
     }
   }, [order.status])
@@ -225,7 +225,7 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
     <div
       style={{
         background: 'linear-gradient(145deg, rgba(24, 24, 27, 0.95), rgba(15, 15, 18, 0.98))',
-        border: '1.5px solid rgba(245, 158, 11, 0.3)',
+        border: '1.5px solid rgba(223, 177, 91, 0.3)',
         borderRadius: '20px',
         padding: '1.25rem',
         margin: '1.25rem 0',
@@ -289,11 +289,11 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
             ) : isPending ? (
               <span style={{ color: '#fafaf9' }}>Order Placed Â· Awaiting Acceptance</span>
             ) : (
-              <>Arriving in <span style={{ color: '#f59e0b' }}>~{etaMinutes} mins</span></>
+              <>Arriving in <span style={{ color: '#dfb15b' }}>~{etaMinutes} mins</span></>
             )}
           </h3>
 
-          <p style={{ margin: '0.2rem 0 0', fontSize: '0.78rem', color: order.status === 'cancelled' ? '#fca5a5' : isPending ? '#fbbf24' : '#a1a1aa', fontWeight: (isPending || order.status === 'cancelled') ? 700 : 500 }}>
+          <p style={{ margin: '0.2rem 0 0', fontSize: '0.78rem', color: order.status === 'cancelled' ? '#fca5a5' : isPending ? '#f3d085' : '#a1a1aa', fontWeight: (isPending || order.status === 'cancelled') ? 700 : 500 }}>
             {order.status === 'cancelled'
               ? 'This order was cancelled. No food preparation or delivery is in progress.'
               : order.status === 'delivered'
@@ -312,9 +312,9 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
           onClick={handleLocateCustomer}
           disabled={gpsLoading}
           style={{
-            background: customerCoords ? 'rgba(34, 197, 94, 0.15)' : 'rgba(245, 158, 11, 0.15)',
-            border: `1px solid ${customerCoords ? 'rgba(34, 197, 94, 0.4)' : 'rgba(245, 158, 11, 0.4)'}`,
-            color: customerCoords ? '#4ade80' : '#fbbf24',
+            background: customerCoords ? 'rgba(34, 197, 94, 0.15)' : 'rgba(223, 177, 91, 0.15)',
+            border: `1px solid ${customerCoords ? 'rgba(34, 197, 94, 0.4)' : 'rgba(223, 177, 91, 0.4)'}`,
+            color: customerCoords ? '#4ade80' : '#f3d085',
             padding: '0.45rem 0.85rem',
             borderRadius: '10px',
             fontSize: '0.75rem',
@@ -378,7 +378,7 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
               style={{
                 height: '100%',
                 width: `${riderProgress * 100}%`,
-                background: 'linear-gradient(90deg, #f59e0b, #22c55e)',
+                background: 'linear-gradient(90deg, #dfb15b, #22c55e)',
                 borderRadius: '9999px',
                 transition: 'width 0.8s ease',
                 boxShadow: '0 0 12px rgba(34, 197, 94, 0.6)',
@@ -395,13 +395,13 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
                 width: '24px',
                 height: '24px',
                 borderRadius: '50%',
-                background: '#f59e0b',
+                background: '#dfb15b',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: '0.75rem',
                 border: '2px solid #18181b',
-                boxShadow: '0 0 10px #f59e0b',
+                boxShadow: '0 0 10px #dfb15b',
                 overflow: 'hidden',
               }}
             >
@@ -455,7 +455,7 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem', fontSize: '0.75rem' }}>
-            <span style={{ color: order.status === 'cancelled' ? '#f87171' : '#f59e0b', fontWeight: 800 }}>
+            <span style={{ color: order.status === 'cancelled' ? '#f87171' : '#dfb15b', fontWeight: 800 }}>
               {order.status === 'cancelled'
                 ? 'Delivery Inactive (Order Cancelled)'
                 : order.status === 'delivered'
@@ -560,8 +560,8 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
         ) : order.status !== 'pending' ? (
           <div
             style={{
-              background: 'rgba(245, 158, 11, 0.08)',
-              border: '1.5px solid rgba(245, 158, 11, 0.35)',
+              background: 'rgba(223, 177, 91, 0.08)',
+              border: '1.5px solid rgba(223, 177, 91, 0.35)',
               borderRadius: '14px',
               padding: '0.85rem',
               display: 'flex',
@@ -586,9 +586,9 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
                 <span style={{
                   fontSize: '0.68rem',
                   fontWeight: 800,
-                  color: '#fbbf24',
-                  background: 'rgba(245, 158, 11, 0.15)',
-                  border: '1px solid rgba(245, 158, 11, 0.3)',
+                  color: '#f3d085',
+                  background: 'rgba(223, 177, 91, 0.15)',
+                  border: '1px solid rgba(223, 177, 91, 0.3)',
                   padding: '3px 7px',
                   borderRadius: '6px',
                   whiteSpace: 'nowrap',
@@ -600,11 +600,11 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
                 style={{
                   fontSize: '1.45rem',
                   fontWeight: 900,
-                  color: '#f59e0b',
+                  color: '#dfb15b',
                   background: '#18181b',
                   padding: '0.35rem 0.85rem',
                   borderRadius: '10px',
-                  border: '1px solid rgba(245, 158, 11, 0.5)',
+                  border: '1px solid rgba(223, 177, 91, 0.5)',
                   letterSpacing: '0.15em',
                 }}
               >
@@ -615,8 +615,8 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
         ) : (
           <div
             style={{
-              background: 'rgba(245, 158, 11, 0.05)',
-              border: '1.5px dashed rgba(245, 158, 11, 0.3)',
+              background: 'rgba(223, 177, 91, 0.05)',
+              border: '1.5px dashed rgba(223, 177, 91, 0.3)',
               borderRadius: '14px',
               padding: '0.85rem',
               display: 'flex',
@@ -628,7 +628,7 @@ export default function LiveDeliveryRadar({ order }: LiveDeliveryRadarProps) {
               <span style={{ fontSize: '0.72rem', color: '#a1a1aa', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 800 }}>
                 Delivery Handover OTP
               </span>
-              <p style={{ margin: '0.15rem 0 0', fontSize: '0.72rem', color: '#f59e0b', fontWeight: 700 }}>
+              <p style={{ margin: '0.15rem 0 0', fontSize: '0.72rem', color: '#dfb15b', fontWeight: 700 }}>
                 Generates upon kitchen acceptance
               </p>
             </div>

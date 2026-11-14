@@ -63,7 +63,7 @@ export default function FoodDetailModal({
         className="glass-card"
         style={{
           background: '#181614',
-          border: '1.5px solid rgba(245, 158, 11, 0.35)',
+          border: '1.5px solid rgba(223, 177, 91, 0.35)',
           borderRadius: '20px',
           maxWidth: '440px',
           width: '100%',
@@ -118,7 +118,7 @@ export default function FoodDetailModal({
             style={{
               fontSize: '0.72rem',
               fontWeight: 800,
-              color: 'var(--gold, #d97706)',
+              color: 'var(--gold, #c89838)',
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
               display: 'block',
@@ -154,9 +154,9 @@ export default function FoodDetailModal({
                       style={{
                         padding: '0.65rem 0.5rem',
                         borderRadius: '10px',
-                        background: isActive ? 'rgba(245, 158, 11, 0.2)' : 'rgba(255, 255, 255, 0.04)',
-                        border: `1.5px solid ${isActive ? 'var(--gold, #d97706)' : 'rgba(255, 255, 255, 0.1)'}`,
-                        color: isActive ? '#fbbf24' : '#fafaf9',
+                        background: isActive ? 'rgba(223, 177, 91, 0.2)' : 'rgba(255, 255, 255, 0.04)',
+                        border: `1.5px solid ${isActive ? 'var(--gold, #c89838)' : 'rgba(255, 255, 255, 0.1)'}`,
+                        color: isActive ? '#f3d085' : '#fafaf9',
                         cursor: 'pointer',
                         textAlign: 'center',
                       }}
@@ -165,7 +165,7 @@ export default function FoodDetailModal({
                       <span style={{ fontSize: '0.70rem', color: '#a1a1aa', display: 'block', marginTop: '2px' }}>
                         {SERVING_HINTS[p]}
                       </span>
-                      <strong style={{ fontSize: '0.92rem', color: '#fbbf24', display: 'block', marginTop: '4px' }}>
+                      <strong style={{ fontSize: '0.92rem', color: '#f3d085', display: 'block', marginTop: '4px' }}>
                         Rs. {priceMap[p]}
                       </strong>
                     </button>
@@ -179,7 +179,7 @@ export default function FoodDetailModal({
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
             <div>
               <span style={{ fontSize: '0.72rem', color: '#a1a1aa', display: 'block' }}>Total Price</span>
-              <strong style={{ fontSize: '1.45rem', color: '#fbbf24', fontWeight: 900 }}>
+              <strong style={{ fontSize: '1.45rem', color: '#f3d085', fontWeight: 900 }}>
                 Rs. {currentPrice}
               </strong>
             </div>
@@ -187,8 +187,8 @@ export default function FoodDetailModal({
               type="button"
               onClick={handleAdd}
               style={{
-                backgroundColor: '#d97706',
-                backgroundImage: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                backgroundColor: '#c89838',
+                backgroundImage: 'linear-gradient(135deg, #dfb15b 0%, #c89838 100%)',
                 color: '#111',
                 padding: '0.65rem 1.5rem',
                 borderRadius: '10px',
@@ -196,7 +196,7 @@ export default function FoodDetailModal({
                 fontSize: '0.95rem',
                 border: 'none',
                 cursor: 'pointer',
-                boxShadow: '0 4px 14px rgba(245, 158, 11, 0.4)',
+                boxShadow: '0 4px 14px rgba(223, 177, 91, 0.4)',
               }}
             >
               Add to Order

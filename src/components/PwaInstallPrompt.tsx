@@ -54,11 +54,11 @@ export default function PwaInstallPrompt() {
         transform: 'translateX(-50%)',
         width: 'min(420px, 92vw)',
         background: '#1a1917',
-        border: '1.5px solid #f59e0b',
+        border: '1.5px solid #dfb15b',
         borderRadius: '16px',
         padding: '1rem',
         zIndex: 9990,
-        boxShadow: '0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.25)',
+        boxShadow: '0 12px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(223, 177, 91, 0.25)',
         display: 'flex',
         alignItems: 'center',
         gap: '0.85rem',
@@ -70,8 +70,8 @@ export default function PwaInstallPrompt() {
           width: '46px',
           height: '46px',
           borderRadius: '12px',
-          backgroundColor: '#d97706',
-          backgroundImage: 'linear-gradient(135deg, #f59e0b, #d97706)',
+          backgroundColor: '#c89838',
+          backgroundImage: 'linear-gradient(135deg, #dfb15b, #c89838)',
           display: 'grid',
           placeItems: 'center',
           overflow: 'hidden',
@@ -95,7 +95,7 @@ export default function PwaInstallPrompt() {
           type="button"
           onClick={handleInstall}
           style={{
-            background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+            background: 'linear-gradient(135deg, #dfb15b, #c89838)',
             color: '#111',
             border: 'none',
             padding: '0.45rem 0.85rem',

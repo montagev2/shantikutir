@@ -212,7 +212,7 @@ export default function Checkout() {
           )}
 
           {diningMode === 'takeaway' && (
-            <div style={{ padding: '0.75rem 1rem', background: 'rgba(245, 158, 11, 0.08)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(245, 158, 11, 0.2)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            <div style={{ padding: '0.75rem 1rem', background: 'rgba(223, 177, 91, 0.08)', borderRadius: 'var(--radius-sm)', border: '1px solid rgba(223, 177, 91, 0.2)', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
                <strong>Highway Counter Curbside Pickup:</strong> Your order will be packed hot in tamper-proof containers. Please collect from the main highway pickup window when your order is marked Ready.
             </div>
           )}
@@ -247,7 +247,7 @@ export default function Checkout() {
                 padding: '0.85rem',
                 borderRadius: 'var(--radius-md)',
                 border: `2px solid ${paymentMethod === 'upi' ? 'var(--gold)' : 'var(--glass-border)'}`,
-                background: paymentMethod === 'upi' ? 'rgba(245, 158, 11, 0.12)' : 'rgba(255, 255, 255, 0.03)',
+                background: paymentMethod === 'upi' ? 'rgba(223, 177, 91, 0.12)' : 'rgba(255, 255, 255, 0.03)',
                 color: paymentMethod === 'upi' ? '#fff' : 'var(--text-muted)',
                 fontWeight: 700,
                 fontSize: '0.9rem',
@@ -268,7 +268,7 @@ export default function Checkout() {
                 padding: '0.85rem',
                 borderRadius: 'var(--radius-md)',
                 border: `2px solid ${paymentMethod === 'cash' ? 'var(--gold)' : 'var(--glass-border)'}`,
-                background: paymentMethod === 'cash' ? 'rgba(245, 158, 11, 0.12)' : 'rgba(255, 255, 255, 0.03)',
+                background: paymentMethod === 'cash' ? 'rgba(223, 177, 91, 0.12)' : 'rgba(255, 255, 255, 0.03)',
                 color: paymentMethod === 'cash' ? '#fff' : 'var(--text-muted)',
                 fontWeight: 700,
                 fontSize: '0.9rem',

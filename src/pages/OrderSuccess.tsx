@@ -63,7 +63,7 @@ export default function OrderSuccess() {
         <div
           style={{
             background: 'rgba(0, 0, 0, 0.4)',
-            border: '1.5px solid rgba(245, 158, 11, 0.35)',
+            border: '1.5px solid rgba(223, 177, 91, 0.35)',
             borderRadius: 'var(--radius-md)',
             padding: '1.25rem',
             marginBottom: '1.75rem',

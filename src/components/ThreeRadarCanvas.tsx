@@ -76,7 +76,7 @@ export default function ThreeRadarCanvas({ status, riderProgress, distanceKm }: 
     const particlePositions = new Float32Array(particleCount * 3)
     const particleColors = new Float32Array(particleCount * 3)
 
-    const baseColor = new THREE.Color(status === 'ready' ? '#4ade80' : '#fbbf24')
+    const baseColor = new THREE.Color(status === 'ready' ? '#4ade80' : '#f3d085')
     const accentColor = new THREE.Color('#38bdf8')
 
     for (let i = 0; i < particleCount; i++) {

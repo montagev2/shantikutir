@@ -174,6 +174,8 @@ export interface StoreContextValue extends StoreState {
   priceFor: (item: Product, portion: string) => number
   orders: Order[]
   refreshOrders: () => Promise<void>
+  cancelOrder: (orderId: string, _reason?: string) => Promise<boolean>
+  rateOrder: (orderId: string, rating: number, _review?: string, _tags?: string[]) => Promise<boolean>
 }
 
 const StoreContext = createContext<StoreContextValue | null>(null)
@@ -498,6 +500,33 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     }
   }, [])
 
+  
+  async function cancelOrder(orderId: string, _reason?: string): Promise<boolean> {
+    try {
+      const { error } = await supabase.from('orders').update({ status: 'cancelled' }).eq('id', orderId)
+      if (!error) {
+        await refreshOrders()
+        return true
+      }
+      return false
+    } catch {
+      return false
+    }
+  }
+
+  async function rateOrder(orderId: string, rating: number, _review?: string, _tags?: string[]): Promise<boolean> {
+    try {
+      const { error } = await supabase.from('orders').update({ rating }).eq('id', orderId)
+      if (!error) {
+        await refreshOrders()
+        return true
+      }
+      return false
+    } catch {
+      return false
+    }
+  }
+
   return (
     <StoreContext.Provider
       value={{
@@ -525,6 +554,8 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         priceFor,
         orders,
         refreshOrders,
+    cancelOrder,
+    rateOrder,
       }}
     >
       {children}

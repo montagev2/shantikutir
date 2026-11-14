@@ -133,7 +133,7 @@ export default function SellerOrders() {
 
                     <span
                       style={{
-                        background: order.status === 'pending' ? 'rgba(245, 158, 11, 0.2)' : 'rgba(194, 65, 12, 0.2)',
+                        background: order.status === 'pending' ? 'rgba(223, 177, 91, 0.2)' : 'rgba(194, 65, 12, 0.2)',
                         color: order.status === 'pending' ? 'var(--gold)' : 'var(--primary)',
                         border: `1px solid ${order.status === 'pending' ? 'var(--gold)' : 'var(--primary)'}`,
                         borderRadius: 'var(--radius-full)',
@@ -191,7 +191,7 @@ export default function SellerOrders() {
                   </div>
 
                   {order.payment_method === 'upi' && !order.utr_verified && (
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(245, 158, 11, 0.1)', padding: '0.5rem 0.75rem', borderRadius: 'var(--radius-sm)', marginBottom: '0.75rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'rgba(223, 177, 91, 0.1)', padding: '0.5rem 0.75rem', borderRadius: 'var(--radius-sm)', marginBottom: '0.75rem' }}>
                       <span style={{ fontSize: '0.78rem', color: 'var(--gold)' }}>
                         UTR: {order.utr_number || 'Awaiting customer entry'}
                       </span>

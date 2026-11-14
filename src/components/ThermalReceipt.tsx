@@ -55,7 +55,7 @@ export default function ThermalReceipt({ order, mode = 'kot', onClose }: Thermal
             style={{
               flex: 1,
               minHeight: '44px',
-              background: '#f59e0b',
+              background: '#dfb15b',
               color: '#000000',
               border: 'none',
               padding: '0.65rem',

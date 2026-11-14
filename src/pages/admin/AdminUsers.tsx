@@ -175,7 +175,7 @@ export default function AdminUsers() {
                   borderRadius: 'var(--radius-full)',
                   background:
                     u.role === 'admin'
-                      ? 'rgba(245, 158, 11, 0.2)'
+                      ? 'rgba(223, 177, 91, 0.2)'
                       : u.role === 'staff'
                       ? 'rgba(194, 65, 12, 0.2)'
                       : 'rgba(255, 255, 255, 0.08)',

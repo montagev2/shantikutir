@@ -6,7 +6,7 @@ import { showToast } from '../components/Toast'
 
 const ROLE_BADGE: Record<string, { label: string; color: string }> = {
   admin:    { label: 'Admin',          color: '#a78bfa' },
-  seller:   { label: 'Kitchen Staff',  color: '#f59e0b' },
+  seller:   { label: 'Kitchen Staff',  color: '#dfb15b' },
   rider:    { label: 'Delivery Rider', color: '#22c55e' },
   customer: { label: 'Customer',       color: '#a1a1aa' },
 }
@@ -31,8 +31,8 @@ export default function Profile() {
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
       </div>
-      <h2 style={{ color: '#f59e0b' }}>You are not signed in</h2>
-      <Link to="/auth" style={{ display: 'inline-block', marginTop: '1rem', padding: '0.65rem 1.5rem', background: '#f59e0b', color: '#18181b', borderRadius: '10px', fontWeight: 800, textDecoration: 'none' }}>
+      <h2 style={{ color: '#dfb15b' }}>You are not signed in</h2>
+      <Link to="/auth" style={{ display: 'inline-block', marginTop: '1rem', padding: '0.65rem 1.5rem', background: '#dfb15b', color: '#18181b', borderRadius: '10px', fontWeight: 800, textDecoration: 'none' }}>
         Sign In / Register
       </Link>
     </div>
@@ -81,7 +81,7 @@ export default function Profile() {
 
       {/* Profile Card */}
       <div className="tfg-glass-card" style={{ padding: '2rem', textAlign: 'center', marginBottom: '1rem', borderRadius: '24px' }}>
-        <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#18181b', fontSize: '2rem', display: 'grid', placeItems: 'center', margin: '0 auto 0.85rem', fontWeight: 900, boxShadow: '0 4px 16px rgba(245,158,11,0.4)' }}>
+        <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: 'linear-gradient(135deg, #dfb15b, #c89838)', color: '#18181b', fontSize: '2rem', display: 'grid', placeItems: 'center', margin: '0 auto 0.85rem', fontWeight: 900, boxShadow: '0 4px 16px rgba(223, 177, 91,0.4)' }}>
           {user.name?.[0]?.toUpperCase() || '?'}
         </div>
 
@@ -92,12 +92,12 @@ export default function Profile() {
               value={nameInput}
               onChange={(e) => setNameInput(e.target.value)}
               placeholder="Your full name"
-              style={{ padding: '0.45rem 0.75rem', borderRadius: '8px', background: '#121214', border: '1px solid #f59e0b', color: '#fff', fontSize: '1rem', touchAction: 'manipulation' }}
+              style={{ padding: '0.45rem 0.75rem', borderRadius: '8px', background: '#121214', border: '1px solid #dfb15b', color: '#fff', fontSize: '1rem', touchAction: 'manipulation' }}
             />
             <button
               type="submit"
               disabled={savingName}
-              style={{ minHeight: '44px', padding: '0.45rem 0.85rem', borderRadius: '8px', background: '#f59e0b', color: '#18181b', border: 'none', fontWeight: 800, cursor: 'pointer', touchAction: 'manipulation' }}
+              style={{ minHeight: '44px', padding: '0.45rem 0.85rem', borderRadius: '8px', background: '#dfb15b', color: '#18181b', border: 'none', fontWeight: 800, cursor: 'pointer', touchAction: 'manipulation' }}
             >
               {savingName ? '...' : 'Save'}
             </button>
@@ -119,7 +119,7 @@ export default function Profile() {
                 setNameInput(user.name || '')
                 setEditingName(true)
               }}
-              style={{ background: 'none', border: 'none', color: '#f59e0b', cursor: 'pointer', padding: '6px', display: 'inline-flex', alignItems: 'center' }}
+              style={{ background: 'none', border: 'none', color: '#dfb15b', cursor: 'pointer', padding: '6px', display: 'inline-flex', alignItems: 'center' }}
               title="Edit Name"
               aria-label="Edit Name"
             >
@@ -144,7 +144,7 @@ export default function Profile() {
             label: 'Total Orders',
             value: myOrders.length,
             icon: (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                 <polyline points="14 2 14 8 20 8"/>
                 <line x1="16" y1="13" x2="8" y2="13"/>
@@ -176,7 +176,7 @@ export default function Profile() {
         ].map((s) => (
           <div key={s.label} className="tfg-glass-card" style={{ padding: '0.85rem 0.5rem', textAlign: 'center', borderRadius: '14px' }}>
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.35rem' }}>{s.icon}</div>
-            <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#f59e0b' }}>{s.value}</div>
+            <div style={{ fontSize: '1.1rem', fontWeight: 900, color: '#dfb15b' }}>{s.value}</div>
             <div style={{ fontSize: '0.68rem', color: '#a1a1aa', marginTop: '2px' }}>{s.label}</div>
           </div>
         ))}
@@ -186,7 +186,7 @@ export default function Profile() {
       <div className="tfg-glass-card" style={{ padding: '1.25rem', marginBottom: '1rem', borderRadius: '16px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M21 2l-2 2m-1.5 1.5L16 7l-1.5-1.5L13 7l-2-2-4 4 1.5 1.5L7 12l-1.5 1.5L7 15l-4 4v3h3l4-4 1.5 1.5L13 14l1.5-1.5L16 14l1.5-1.5L19 14l3-3-4-4 3-3z"/>
             </svg>
             <div>
@@ -197,7 +197,7 @@ export default function Profile() {
           <button
             type="button"
             onClick={() => setEditingPin(!editingPin)}
-            style={{ minHeight: '36px', padding: '0.4rem 0.85rem', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', color: '#f59e0b', fontWeight: 700, fontSize: '0.78rem', cursor: 'pointer', touchAction: 'manipulation' }}
+            style={{ minHeight: '36px', padding: '0.4rem 0.85rem', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: '8px', color: '#dfb15b', fontWeight: 700, fontSize: '0.78rem', cursor: 'pointer', touchAction: 'manipulation' }}
           >
             {editingPin ? 'Cancel' : 'Change PIN'}
           </button>
@@ -232,7 +232,7 @@ export default function Profile() {
             <button
               type="submit"
               disabled={savingPin}
-              style={{ minHeight: '44px', padding: '0.65rem', background: 'linear-gradient(135deg, #f59e0b, #d97706)', color: '#18181b', border: 'none', borderRadius: '8px', fontWeight: 800, cursor: 'pointer', fontSize: '0.85rem', touchAction: 'manipulation' }}
+              style={{ minHeight: '44px', padding: '0.65rem', background: 'linear-gradient(135deg, #dfb15b, #c89838)', color: '#18181b', border: 'none', borderRadius: '8px', fontWeight: 800, cursor: 'pointer', fontSize: '0.85rem', touchAction: 'manipulation' }}
             >
               {savingPin ? 'Saving PIN / Password...' : 'Update PIN / Password'}
             </button>
@@ -243,7 +243,7 @@ export default function Profile() {
       {/* Saved Address Book */}
       <div className="tfg-glass-card" style={{ padding: '1.25rem', marginBottom: '1rem', borderRadius: '16px' }}>
         <h2 style={{ margin: '0 0 0.85rem', fontSize: '0.85rem', color: '#a1a1aa', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           Saved Delivery Addresses ({addresses.length})
         </h2>
         {addresses.length === 0 ? (
@@ -253,7 +253,7 @@ export default function Profile() {
             {addresses.map((addr, idx) => (
               <div key={idx} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '0.65rem 0.85rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <strong style={{ color: '#f59e0b', fontSize: '0.82rem', display: 'block' }}>{addr.label}</strong>
+                  <strong style={{ color: '#dfb15b', fontSize: '0.82rem', display: 'block' }}>{addr.label}</strong>
                   <span style={{ color: '#d6d3d1', fontSize: '0.78rem' }}>{addr.address}</span>
                 </div>
                 <button
@@ -288,7 +288,7 @@ export default function Profile() {
                 Manage Staff & Roles
               </Link>
             )}
-            <Link to="/seller/orders" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem', background: 'rgba(245, 158, 11, 0.12)', border: '1px solid rgba(245, 158, 11, 0.35)', borderRadius: '10px', textDecoration: 'none', color: '#fef3c7', fontWeight: 700, fontSize: '0.9rem', touchAction: 'manipulation' }}>
+            <Link to="/seller/orders" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem', background: 'rgba(223, 177, 91, 0.12)', border: '1px solid rgba(223, 177, 91, 0.35)', borderRadius: '10px', textDecoration: 'none', color: '#fef3c7', fontWeight: 700, fontSize: '0.9rem', touchAction: 'manipulation' }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
               Kitchen KOT — Live Orders
             </Link>
@@ -315,7 +315,7 @@ export default function Profile() {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
           {lang === 'bn' ? 'আমার অর্ডার হিস্টোরি' : 'My Order History'}
         </Link>
-        <Link to="/support" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', textDecoration: 'none', color: '#f59e0b', fontWeight: 700, fontSize: '0.9rem', touchAction: 'manipulation' }}>
+        <Link to="/support" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', textDecoration: 'none', color: '#dfb15b', fontWeight: 700, fontSize: '0.9rem', touchAction: 'manipulation' }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
           {lang === 'bn' ? 'কাস্টমার সাপোর্ট ও হেল্পডেস্ক' : 'Customer Support & Helpdesk'}
         </Link>

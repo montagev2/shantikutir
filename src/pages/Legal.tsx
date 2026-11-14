@@ -89,7 +89,7 @@ export default function Legal() {
   }
 
   const subHeadingStyle: React.CSSProperties = {
-    color: '#f59e0b',
+    color: '#dfb15b',
     fontSize: '0.88rem',
     fontWeight: 800,
     marginTop: '1rem',
@@ -110,7 +110,7 @@ export default function Legal() {
             borderRadius: '50%',
             objectFit: 'cover',
             border: '1.5px solid var(--primary)',
-            boxShadow: '0 4px 16px rgba(245, 158, 11, 0.25)',
+            boxShadow: '0 4px 16px rgba(223, 177, 91, 0.25)',
           }}
         />
         <div>
@@ -146,7 +146,7 @@ export default function Legal() {
               minHeight: '48px',
               borderRadius: '10px',
               border: 'none',
-              background: activeTab === t.id ? 'linear-gradient(135deg, #f59e0b, #d97706)' : 'transparent',
+              background: activeTab === t.id ? 'linear-gradient(135deg, #dfb15b, #c89838)' : 'transparent',
               color: activeTab === t.id ? '#18181b' : '#a1a1aa',
               fontWeight: 800,
               fontSize: '0.72rem',
@@ -304,8 +304,8 @@ export default function Legal() {
             fontSize: '0.88rem',
             padding: '0.65rem 1.25rem',
             borderRadius: '10px',
-            background: 'rgba(245, 158, 11, 0.1)',
-            border: '1px solid rgba(245, 158, 11, 0.3)',
+            background: 'rgba(223, 177, 91, 0.1)',
+            border: '1px solid rgba(223, 177, 91, 0.3)',
             minHeight: '44px',
             touchAction: 'manipulation',
           }}

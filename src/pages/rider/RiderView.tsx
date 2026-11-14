@@ -123,9 +123,9 @@ export default function RiderView() {
 
         <div className="tfg-glass-card" style={{ padding: '1rem', textAlign: 'center', borderRadius: '16px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.35rem' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
           </div>
-          <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#f59e0b' }}>₹{pendingCashToCollect}</div>
+          <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#dfb15b' }}>₹{pendingCashToCollect}</div>
           <div style={{ fontSize: '0.72rem', color: '#a1a1aa' }}>Pending Cash</div>
         </div>
 
@@ -314,7 +314,7 @@ export default function RiderView() {
 
                   <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '10px', padding: '0.65rem 0.85rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem', marginBottom: '0.65rem' }}>
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                       <div>
                         <span style={{ fontSize: '0.72rem', color: '#a1a1aa', display: 'block', textTransform: 'uppercase', fontWeight: 700 }}>
                           Delivery Destination:
@@ -368,8 +368,8 @@ export default function RiderView() {
                 {/* Extended Delivery — Extra Cash Collection Notice */}
                 {(o as any).isExtendedDelivery && (
                   <div style={{
-                    background: (o as any).extendedDeliveryApproved ? 'rgba(34,197,94,0.1)' : 'rgba(245,158,11,0.1)',
-                    border: `1.5px solid ${(o as any).extendedDeliveryApproved ? 'rgba(34,197,94,0.4)' : 'rgba(245,158,11,0.4)'}`,
+                    background: (o as any).extendedDeliveryApproved ? 'rgba(34,197,94,0.1)' : 'rgba(223, 177, 91,0.1)',
+                    border: `1.5px solid ${(o as any).extendedDeliveryApproved ? 'rgba(34,197,94,0.4)' : 'rgba(223, 177, 91,0.4)'}`,
                     borderRadius: '12px',
                     padding: '0.65rem 0.9rem',
                     marginBottom: '0.85rem',
@@ -381,13 +381,13 @@ export default function RiderView() {
                       {(o as any).extendedDeliveryApproved ? (
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                       ) : (
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f3d085" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                       )}
                     </span>
                     <div>
                       <strong style={{
                         fontSize: '0.82rem',
-                        color: (o as any).extendedDeliveryApproved ? '#4ade80' : '#fbbf24',
+                        color: (o as any).extendedDeliveryApproved ? '#4ade80' : '#f3d085',
                         display: 'block',
                       }}>
                         {(o as any).extendedDeliveryApproved ? 'Approved by Kitchen Staff' : 'Awaiting Staff Approval'}
@@ -422,7 +422,7 @@ export default function RiderView() {
                       {balance > 0 ? `₹${balance}` : '₹0 Balance'}
                     </strong>
                     {extraCash > 0 && (
-                      <span style={{ fontSize: '0.72rem', color: '#fbbf24', display: 'block', marginTop: '2px', fontWeight: 700 }}>
+                      <span style={{ fontSize: '0.72rem', color: '#f3d085', display: 'block', marginTop: '2px', fontWeight: 700 }}>
                         (Includes ₹{extraCash} distance delivery surcharge)
                       </span>
                     )}
@@ -436,8 +436,8 @@ export default function RiderView() {
                 {activeTab === 'active' && !canDeliver && (
                   <div
                     style={{
-                      background: 'rgba(245, 158, 11, 0.12)',
-                      border: '1px solid rgba(245, 158, 11, 0.3)',
+                      background: 'rgba(223, 177, 91, 0.12)',
+                      border: '1px solid rgba(223, 177, 91, 0.3)',
                       borderRadius: '10px',
                       padding: '0.6rem 0.85rem',
                       fontSize: '0.78rem',
@@ -620,12 +620,12 @@ export default function RiderView() {
               <div
                 style={{
                   background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(251, 191, 36, 0.3)',
+                  border: '1px solid rgba(243, 208, 133, 0.3)',
                   borderRadius: '12px',
                   padding: '0.65rem 1rem',
                   marginBottom: '1rem',
                   fontSize: '0.88rem',
-                  color: '#fbbf24',
+                  color: '#f3d085',
                   fontWeight: 800,
                   display: 'flex',
                   alignItems: 'center',

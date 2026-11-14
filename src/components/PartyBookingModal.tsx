@@ -37,9 +37,9 @@ export default function PartyBookingModal({ onClose }: { onClose: () => void }) 
 
   return (
     <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.78)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)', zIndex: 9999, display: 'grid', placeItems: 'center', padding: '1rem' }} onClick={onClose}>
-      <div className="tfg-glass-elevated modal-pop" style={{ border: '1px solid rgba(245,158,11,0.4)', borderRadius: '20px', padding: '1.5rem', width: 'min(440px, 94vw)', maxHeight: '90vh', overflowY: 'auto', color: '#fafaf9', boxShadow: '0 20px 60px rgba(0,0,0,0.8)' }} onClick={e => e.stopPropagation()}>
+      <div className="tfg-glass-elevated modal-pop" style={{ border: '1px solid rgba(223, 177, 91,0.4)', borderRadius: '20px', padding: '1.5rem', width: 'min(440px, 94vw)', maxHeight: '90vh', overflowY: 'auto', color: '#fafaf9', boxShadow: '0 20px 60px rgba(0,0,0,0.8)' }} onClick={e => e.stopPropagation()}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem' }}>
-          <h3 style={{ margin: 0, color: '#f59e0b', fontSize: '1.2rem', fontWeight: 900 }}>Table & Party Booking</h3>
+          <h3 style={{ margin: 0, color: '#dfb15b', fontSize: '1.2rem', fontWeight: 900 }}>Table & Party Booking</h3>
           <button type="button" onClick={onClose} aria-label="Close dialog" style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)', color: '#a8a29e', width: '38px', height: '38px', borderRadius: '50%', cursor: 'pointer', display: 'grid', placeItems: 'center', touchAction: 'manipulation' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
@@ -53,7 +53,7 @@ export default function PartyBookingModal({ onClose }: { onClose: () => void }) 
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%)' }} />
-          <span style={{ position: 'absolute', bottom: '8px', left: '10px', fontSize: '0.74rem', color: '#fbbf24', fontWeight: 800 }}>
+          <span style={{ position: 'absolute', bottom: '8px', left: '10px', fontSize: '0.74rem', color: '#f3d085', fontWeight: 800 }}>
             Real Bamboo Cottages & Illuminated Garden
           </span>
         </div>
@@ -103,7 +103,7 @@ export default function PartyBookingModal({ onClose }: { onClose: () => void }) 
               marginTop: '0.5rem',
               padding: '0.75rem',
               borderRadius: '10px',
-              background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+              background: 'linear-gradient(135deg, #dfb15b 0%, #c89838 100%)',
               border: 'none',
               color: '#18181b',
               fontWeight: 900,

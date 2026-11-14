@@ -62,7 +62,7 @@ function StandaloneToast({
         zIndex: 100000,
         padding: '0.85rem 1.6rem',
         borderRadius: 'var(--radius-full, 9999px)',
-        border: `1.5px solid ${isSuccess ? 'var(--emerald, #10b981)' : isError ? 'var(--rose, #ef4444)' : 'var(--gold, #d97706)'}`,
+        border: `1.5px solid ${isSuccess ? 'var(--emerald, #10b981)' : isError ? 'var(--rose, #ef4444)' : 'var(--gold, #c89838)'}`,
         background: isSuccess
           ? 'rgba(6, 78, 59, 0.95)'
           : isError
@@ -141,7 +141,7 @@ export function Toast(props?: {
             style={{
               padding: '0.75rem 1.25rem',
               borderRadius: 'var(--radius-md, 12px)',
-              border: `1.5px solid ${isSuccess ? 'var(--emerald, #10b981)' : isError ? 'var(--rose, #ef4444)' : 'var(--gold, #d97706)'}`,
+              border: `1.5px solid ${isSuccess ? 'var(--emerald, #10b981)' : isError ? 'var(--rose, #ef4444)' : 'var(--gold, #c89838)'}`,
               background: isSuccess
                 ? 'rgba(6, 78, 59, 0.95)'
                 : isError

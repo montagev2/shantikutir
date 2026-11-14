@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Hind+Siliguri:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,opsz,wght@0,14..32,400..900;1,14..32,400..900&display=swap');
 
 /* ═══════════════════════════════════════════════════════════════════════
-   TFG DESIGN TOKENS — The Food Garden
+   SHANTI KUTIR ROYAL BENGAL HERITAGE DESIGN SYSTEM
    All visual primitives live here. No inline ad-hoc values.
 ════════════════════════════════════════════════════════════════════════ */
 :root {
@@ -19,7 +19,7 @@
   --glass-bg-subtle:       rgba(255, 255, 255, 0.035);
   --glass-border:          rgba(255, 255, 255, 0.09);
   --glass-border-specular: rgba(255, 255, 255, 0.16);
-  --glass-border-active:   rgba(245, 158, 11, 0.50);
+  --glass-border-active:   rgba(223, 177, 91, 0.50);
   --glass-blur:            blur(24px) saturate(190%);
   --glass-blur-heavy:      blur(32px) saturate(200%);
   --glass-specular-glow:   inset 0 1px 1px 0 rgba(255, 255, 255, 0.14);
@@ -27,15 +27,15 @@
   --glass-shadow-elevated: 0 20px 50px 0 rgba(0, 0, 0, 0.75);
 
   /* ── Brand: Sandalwood Gold & Terracotta ──────────── */
-  --primary:            #f59e0b;
-  --primary-dark:       #d97706;
-  --primary-hover:      #fbbf24;
-  --primary-glow:       rgba(245, 158, 11, 0.22);
-  --primary-glow-strong:rgba(245, 158, 11, 0.38);
+  --primary: #dfb15b;
+  --primary-dark: #b88628;
+  --primary-hover: #f3d085;
+  --primary-glow: rgba(223, 177, 91, 0.22);
+  --primary-glow-strong: rgba(223, 177, 91, 0.38);
   --terracotta:         #c2410c;
   --terracotta-light:   #ea580c;
-  --garden-green:       #16a34a;
-  --garden-green-light: #22c55e;
+  --emerald-accent: #0f766e;
+  --emerald-light: #14b8a6;
 
   /* ── Semantic ────────────────────────────────────── */
   --veg-color:     #22c55e;
@@ -58,14 +58,14 @@
   /* ── Borders ─────────────────────────────────────── */
   --border:        rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.14);
-  --border-active: rgba(245, 158, 11, 0.45);
+  --border-active: rgba(223, 177, 91, 0.45);
 
   /* ── Shadows ─────────────────────────────────────── */
   --shadow-sm:        0 2px 8px  rgba(0, 0, 0, 0.35);
   --shadow-md:        0 8px 24px rgba(0, 0, 0, 0.45);
   --shadow-lg:        0 16px 40px rgba(0, 0, 0, 0.60);
-  --shadow-primary:   0 4px 16px rgba(245, 158, 11, 0.30);
-  --shadow-primary-lg:0 8px 28px rgba(245, 158, 11, 0.42);
+  --shadow-primary:   0 4px 16px rgba(223, 177, 91, 0.30);
+  --shadow-primary-lg:0 8px 28px rgba(223, 177, 91, 0.42);
 
   /* ── Border Radius ───────────────────────────────── */
   --radius-xs:   6px;
@@ -87,7 +87,7 @@
   --bg-body:       var(--bg-main);
   --text-light:    var(--text-primary);
   --border-line:   var(--border);
-  --garden-accent: #c2410c;
+  --royal-crimson: #b91c1c;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -128,9 +128,9 @@ body {
   background-color: var(--bg-main);
   /* Multi-layered ambient lighting underlay — enables genuine glass refraction */
   background-image:
-    radial-gradient(ellipse 70% 35% at 50% -5%, rgba(245, 158, 11, 0.12), transparent 60%),
-    radial-gradient(circle 500px at 90% 15%,  rgba(22, 163, 74, 0.05), transparent 50%),
-    radial-gradient(circle 600px at 10% 45%,  rgba(245, 158, 11, 0.04), transparent 55%);
+    radial-gradient(ellipse 70% 35% at 50% -5%, rgba(223, 177, 91, 0.14), transparent 60%),
+    radial-gradient(circle 500px at 90% 15%,  rgba(185, 28, 28, 0.06), transparent 50%),
+    radial-gradient(circle 600px at 10% 45%,  rgba(223, 177, 91, 0.04), transparent 55%);
   background-attachment: fixed;
   color: var(--text-primary);
   font-family: var(--font-family);
@@ -166,7 +166,7 @@ a:active {
 /* ═══════════════════════════════════════════════════════════════════════
    CLEAN LUXURY GLASSMORPHISM UTILITIES
 ════════════════════════════════════════════════════════════════════════ */
-.tfg-glass {
+.sk-glass {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -175,7 +175,7 @@ a:active {
   border-radius: var(--radius-lg);
 }
 
-.tfg-glass-elevated {
+.sk-glass-elevated {
   background: var(--glass-bg-elevated);
   backdrop-filter: var(--glass-blur-heavy);
   -webkit-backdrop-filter: var(--glass-blur-heavy);
@@ -184,7 +184,7 @@ a:active {
   border-radius: var(--radius-lg);
 }
 
-.tfg-glass-card {
+.sk-glass-card {
   background: rgba(22, 22, 26, 0.68);
   backdrop-filter: blur(24px) saturate(190%);
   -webkit-backdrop-filter: blur(24px) saturate(190%);
@@ -197,16 +197,16 @@ a:active {
     border-color  0.28s ease;
 }
 
-.tfg-glass-card:hover {
+.sk-glass-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(245, 158, 11, 0.45);
+  border-color: rgba(223, 177, 91, 0.45);
   box-shadow:
     inset 0 1px 1px 0 rgba(255, 255, 255, 0.22),
     0 20px 48px 0 rgba(0, 0, 0, 0.6),
-    0 0 28px rgba(245, 158, 11, 0.2);
+    0 0 28px rgba(223, 177, 91, 0.2);
 }
 
-.tfg-glass-pill {
+.sk-glass-pill {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -214,7 +214,7 @@ a:active {
   border-radius: var(--radius-full);
 }
 
-.tfg-card {
+.sk-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -225,16 +225,16 @@ a:active {
     border-color  0.25s ease;
 }
 
-.tfg-card:hover {
+.sk-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg), 0 0 24px var(--primary-glow);
-  border-color: rgba(245, 158, 11, 0.30);
+  border-color: rgba(223, 177, 91, 0.30);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
    BUTTON UTILITIES
 ════════════════════════════════════════════════════════════════════════ */
-.tfg-btn {
+.sk-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -249,42 +249,42 @@ a:active {
   transition: all 0.22s var(--ease-out);
 }
 
-.tfg-btn:active { transform: scale(0.96); }
+.sk-btn:active { transform: scale(0.96); }
 
-.tfg-btn-primary {
-  background-color: #d97706;
+.sk-btn-primary {
+  background-color: #c89838;
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: #111;
   box-shadow: var(--shadow-primary);
 }
-.tfg-btn-primary:hover {
+.sk-btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-primary-lg);
-  background-color: #f59e0b;
+  background-color: #dfb15b;
   background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary) 100%);
 }
 
-.tfg-btn-secondary {
+.sk-btn-secondary {
   background: var(--surface-2);
   border: 1px solid var(--border-strong);
   color: var(--text-secondary);
 }
-.tfg-btn-secondary:hover {
+.sk-btn-secondary:hover {
   background: var(--surface-hover);
   border-color: var(--border-active);
   color: var(--text-primary);
 }
 
-.tfg-btn-ghost {
+.sk-btn-ghost {
   background: transparent;
   color: var(--text-muted);
 }
-.tfg-btn-ghost:hover { color: var(--primary); }
+.sk-btn-ghost:hover { color: var(--primary); }
 
 /* ═══════════════════════════════════════════════════════════════════════
    INPUT FIELD UTILITIES
 ════════════════════════════════════════════════════════════════════════ */
-.tfg-input {
+.sk-input {
   width: 100%;
   background: rgba(0, 0, 0, 0.28);
   border: 1.5px solid var(--border-strong);
@@ -296,11 +296,11 @@ a:active {
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
-.tfg-input:focus {
+.sk-input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+  box-shadow: 0 0 0 3px rgba(223, 177, 91, 0.15);
 }
-.tfg-input::placeholder { color: var(--text-faint); }
+.sk-input::placeholder { color: var(--text-faint); }
 
 /* ═══════════════════════════════════════════════════════════════════════
    VEG / NON-VEG BADGES (FSSAI standard format)
@@ -392,7 +392,7 @@ a:active {
 
 .food-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(245, 158, 11, 0.45) !important;
+  border-color: rgba(223, 177, 91, 0.45) !important;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), var(--shadow-lg), 0 0 24px var(--primary-glow) !important;
 }
 
@@ -450,7 +450,7 @@ a:active {
   border: 1.5px solid var(--primary);
   border-radius: var(--radius-sm);
   padding: 2px 4px;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25);
+  box-shadow: 0 4px 16px rgba(223, 177, 91, 0.25);
   animation: qtySpringPop 0.32s var(--ease-spring);
 }
 
@@ -486,7 +486,7 @@ a:active {
 .category-pill:hover {
   background: rgba(38, 38, 42, 0.95);
   color: var(--text-primary);
-  border-color: rgba(245, 158, 11, 0.35);
+  border-color: rgba(223, 177, 91, 0.35);
   transform: translateY(-1px);
 }
 
@@ -524,7 +524,7 @@ a:active {
   background: rgba(24, 24, 28, 0.82);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border: 1.5px solid rgba(245, 158, 11, 0.35);
+  border: 1.5px solid rgba(223, 177, 91, 0.35);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -542,15 +542,15 @@ a:active {
 
 .signature-card:hover {
   transform: translateY(-6px) scale(1.01);
-  border-color: rgba(245, 158, 11, 0.7);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), 0 0 28px rgba(245, 158, 11, 0.28);
+  border-color: rgba(223, 177, 91, 0.7);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.75), 0 0 28px rgba(223, 177, 91, 0.28);
 }
 
 .signature-badge {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+  background: linear-gradient(135deg, #f3d085 0%, #c89838 100%);
   color: #111;
   font-size: 0.68rem;
   font-weight: 900;
@@ -585,7 +585,7 @@ a:active {
 
 @keyframes islandPulse {
   0%   { transform: scale(1); }
-  50%  { transform: scale(1.08); box-shadow: 0 0 35px rgba(245, 158, 11, 0.6); }
+  50%  { transform: scale(1.08); box-shadow: 0 0 35px rgba(223, 177, 91, 0.6); }
   100% { transform: scale(1); }
 }
 
@@ -705,7 +705,7 @@ a:active {
 
 @keyframes timelinePulse {
   0%, 100% { box-shadow: 0 0 14px var(--primary-glow); }
-  50%       { box-shadow: 0 0 28px var(--primary-glow-strong), 0 0 0 6px rgba(245, 158, 11, 0.08); }
+  50%       { box-shadow: 0 0 28px var(--primary-glow-strong), 0 0 0 6px rgba(223, 177, 91, 0.08); }
 }
 
 /* Step text content */
@@ -831,7 +831,7 @@ a:active {
 }
 
 /* ── Staff Action Button ────────────────────────────────────────── */
-.tfg-btn-staff {
+.sk-btn-staff {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -845,7 +845,7 @@ a:active {
   color: var(--text-secondary);
   transition: all 0.18s ease;
 }
-.tfg-btn-staff:hover {
+.sk-btn-staff:hover {
   background: var(--surface-hover);
   border-color: var(--primary);
   color: var(--primary);
@@ -935,7 +935,7 @@ a:active {
 
 .service-card:hover {
   transform: translateY(-2px);
-  border-color: rgba(245, 158, 11, 0.5);
+  border-color: rgba(223, 177, 91, 0.5);
   background: rgba(34, 34, 32, 0.95);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
@@ -958,9 +958,9 @@ a:active {
 }
 
 .service-card.active-cottage_dine_in {
-  border-color: #f59e0b;
-  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.28), inset 0 1px 0 rgba(245, 158, 11, 0.35);
-  background: linear-gradient(145deg, rgba(245, 158, 11, 0.14) 0%, rgba(26, 25, 23, 0.95) 100%);
+  border-color: #dfb15b;
+  box-shadow: 0 8px 28px rgba(223, 177, 91, 0.28), inset 0 1px 0 rgba(223, 177, 91, 0.35);
+  background: linear-gradient(145deg, rgba(223, 177, 91, 0.14) 0%, rgba(26, 25, 23, 0.95) 100%);
 }
 
 .service-card.active-takeaway {
@@ -1174,7 +1174,7 @@ button,
 a,
 input,
 select,
-.tfg-btn,
+.sk-btn,
 .portion-btn,
 .service-card {
   touch-action: manipulation;
@@ -1364,4 +1364,107 @@ select,
     opacity: 0.45;
     transform: scale(0.85);
   }
+}
+
+
+/* ==========================================================================
+   SHANTI KUTIR BESPOKE ROYAL BENGAL HERITAGE STYLING
+   ========================================================================== */
+
+.sk-gold-text {
+  background: linear-gradient(135deg, #fff7ed 0%, #f3d085 40%, #dfb15b 70%, #b88628 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.sk-brass-card {
+  background: linear-gradient(180deg, rgba(28, 25, 22, 0.95) 0%, rgba(18, 16, 14, 0.98) 100%);
+  border: 1px solid rgba(223, 177, 91, 0.22);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.sk-brass-card:hover {
+  border-color: rgba(223, 177, 91, 0.45);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.75), 0 0 20px rgba(223, 177, 91, 0.15);
+  transform: translateY(-2px);
+}
+
+.sk-btn-gold {
+  background: linear-gradient(135deg, #f5d796 0%, #dfb15b 50%, #b88628 100%);
+  color: #12100e;
+  border: none;
+  font-weight: 800;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(223, 177, 91, 0.35);
+  transition: all 0.2s ease;
+}
+
+.sk-btn-gold:hover {
+  background: linear-gradient(135deg, #fae2ad 0%, #e8bc68 50%, #c49232 100%);
+  box-shadow: 0 6px 20px rgba(223, 177, 91, 0.45);
+  transform: translateY(-1px);
+}
+
+.sk-btn-crimson {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #7f1d1d 100%);
+  color: #ffffff;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  font-weight: 800;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(185, 28, 28, 0.35);
+}
+
+.sk-experience-pill {
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  background: rgba(24, 21, 18, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+}
+
+.sk-experience-pill.active {
+  background: linear-gradient(135deg, rgba(223, 177, 91, 0.18) 0%, rgba(185, 28, 28, 0.12) 100%);
+  border-color: #dfb15b;
+  box-shadow: 0 0 16px rgba(223, 177, 91, 0.25);
+}
+
+.sk-badge-royal {
+  background: linear-gradient(135deg, #dfb15b 0%, #b88628 100%);
+  color: #12100e;
+  font-size: 0.70rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
+
+.sk-ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 1.25rem 0;
+  color: rgba(223, 177, 91, 0.4);
+}
+
+.sk-ornament-divider::before,
+.sk-ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(223, 177, 91, 0.35), transparent);
 }

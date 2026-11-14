@@ -138,9 +138,9 @@ export default function CustomerNotificationBanner() {
         width: 'calc(100% - 24px)',
         maxWidth: '660px',
         background: 'linear-gradient(135deg, #1c1917 0%, #291807 100%)',
-        border: '1.5px solid rgba(245, 158, 11, 0.45)',
+        border: '1.5px solid rgba(223, 177, 91, 0.45)',
         borderRadius: '16px',
-        boxShadow: '0 12px 36px rgba(0, 0, 0, 0.65), 0 0 24px rgba(245, 158, 11, 0.25)',
+        boxShadow: '0 12px 36px rgba(0, 0, 0, 0.65), 0 0 24px rgba(223, 177, 91, 0.25)',
         padding: '0.85rem 1.15rem',
         display: 'flex',
         alignItems: 'center',
@@ -161,11 +161,11 @@ export default function CustomerNotificationBanner() {
             fontWeight: 800,
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
-            color: '#fbbf24',
+            color: '#f3d085',
           }}
         >
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f59e0b' }} />
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#dfb15b' }} />
             {bannerItem.badge}
           </span>
           {bannerItem.time && (
@@ -191,7 +191,7 @@ export default function CustomerNotificationBanner() {
             type="button"
             onClick={() => handleClaimCoupon(bannerItem.couponCode!, bannerItem.id)}
             style={{
-              background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+              background: 'linear-gradient(135deg, #dfb15b 0%, #c89838 100%)',
               border: 'none',
               color: '#18181b',
               padding: '0.42rem 0.75rem',
@@ -200,7 +200,7 @@ export default function CustomerNotificationBanner() {
               fontWeight: 900,
               cursor: 'pointer',
               whiteSpace: 'nowrap',
-              boxShadow: '0 2px 10px rgba(245, 158, 11, 0.4)',
+              boxShadow: '0 2px 10px rgba(223, 177, 91, 0.4)',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',

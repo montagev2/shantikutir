@@ -116,7 +116,7 @@ export default function Auth() {
               fontWeight: 700,
               background: mode === 'login' ? 'var(--surface-hover)' : 'transparent',
               color: mode === 'login' ? 'var(--gold)' : 'var(--text-muted)',
-              border: mode === 'login' ? '1px solid rgba(245, 158, 11, 0.3)' : '1px solid transparent',
+              border: mode === 'login' ? '1px solid rgba(223, 177, 91, 0.3)' : '1px solid transparent',
             }}
           >
             Sign In
@@ -131,7 +131,7 @@ export default function Auth() {
               fontWeight: 700,
               background: mode === 'register' ? 'var(--surface-hover)' : 'transparent',
               color: mode === 'register' ? 'var(--gold)' : 'var(--text-muted)',
-              border: mode === 'register' ? '1px solid rgba(245, 158, 11, 0.3)' : '1px solid transparent',
+              border: mode === 'register' ? '1px solid rgba(223, 177, 91, 0.3)' : '1px solid transparent',
             }}
           >
             Register

@@ -21,11 +21,11 @@ export function Loader({ text = 'Preparing Culinary Experience...' }: LoaderProp
         style={{
           width: '3.2rem',
           height: '3.2rem',
-          border: '3px solid rgba(245, 158, 11, 0.15)',
+          border: '3px solid rgba(223, 177, 91, 0.15)',
           borderTop: '3px solid var(--gold)',
           borderRadius: '50%',
           animation: 'spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite',
-          boxShadow: '0 0 20px rgba(245, 158, 11, 0.25)',
+          boxShadow: '0 0 20px rgba(223, 177, 91, 0.25)',
         }}
       />
       <span style={{ fontSize: '0.95rem', color: 'var(--text-muted)', fontWeight: 600, letterSpacing: '0.02em' }}>

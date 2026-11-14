@@ -161,12 +161,12 @@ export default function AdminCleaner() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.75rem' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
               <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
               <line x1="12" y1="22.08" x2="12" y2="12" />
             </svg>
-            <h1 style={{ fontSize: '1.4rem', color: '#f59e0b', margin: 0, fontWeight: 900, letterSpacing: '-0.02em' }}>
+            <h1 style={{ fontSize: '1.4rem', color: '#dfb15b', margin: 0, fontWeight: 900, letterSpacing: '-0.02em' }}>
               Database Cleaner & Lifetime Vault
             </h1>
           </div>
@@ -191,7 +191,7 @@ export default function AdminCleaner() {
       <div
         className="tfg-glass-elevated"
         style={{
-          border: '1.5px solid rgba(245,158,11,0.45)',
+          border: '1.5px solid rgba(223, 177, 91,0.45)',
           borderRadius: '20px',
           padding: '1.5rem',
           marginBottom: '1.5rem',
@@ -201,8 +201,8 @@ export default function AdminCleaner() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', marginBottom: '0.35rem' }}>
-              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(245,158,11,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'rgba(223, 177, 91,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <circle cx="12" cy="12" r="3" />
                   <path d="M12 9v1" />
@@ -223,7 +223,7 @@ export default function AdminCleaner() {
             type="button"
             onClick={() => exportOrdersToCSV(orders)}
             style={{
-              background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+              background: 'linear-gradient(135deg, #dfb15b, #c89838)',
               color: '#111',
               border: 'none',
               padding: '0.6rem 1.1rem',
@@ -234,7 +234,7 @@ export default function AdminCleaner() {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              boxShadow: '0 4px 14px rgba(245,158,11,0.3)',
+              boxShadow: '0 4px 14px rgba(223, 177, 91,0.3)',
               minHeight: '44px',
               touchAction: 'manipulation',
             }}
@@ -258,7 +258,7 @@ export default function AdminCleaner() {
 
           <div className="tfg-glass-card" style={{ padding: '1rem', background: 'rgba(18, 18, 20, 0.7)' }}>
             <span style={{ fontSize: '0.72rem', color: '#a1a1aa', textTransform: 'uppercase', fontWeight: 800, display: 'block' }}>Total All-Time Orders</span>
-            <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#f59e0b', marginTop: '2px', letterSpacing: '-0.02em' }}>{totalLifetimeOrders}</div>
+            <div style={{ fontSize: '1.4rem', fontWeight: 900, color: '#dfb15b', marginTop: '2px', letterSpacing: '-0.02em' }}>{totalLifetimeOrders}</div>
             <span style={{ fontSize: '0.68rem', color: '#71717a', display: 'block', marginTop: '2px' }}>Vault: {vault.vaultOrdersCount} + Live: {orders.length}</span>
           </div>
 
@@ -274,7 +274,7 @@ export default function AdminCleaner() {
 
       {/* Controls Grid */}
       <h2 style={{ fontSize: '1.1rem', color: '#fafaf9', fontWeight: 800, marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="3" />
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
         </svg>
@@ -283,15 +283,15 @@ export default function AdminCleaner() {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
         {/* CARD 1: Delete Specific Order by ID */}
-        <div className="tfg-glass-card" style={{ padding: '1.25rem', borderColor: 'rgba(245,158,11,0.25)' }}>
+        <div className="tfg-glass-card" style={{ padding: '1.25rem', borderColor: 'rgba(223, 177, 91,0.25)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.35rem' }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <rect x="3" y="4" width="18" height="16" rx="2" />
               <line x1="7" y1="8" x2="17" y2="8" />
               <line x1="7" y1="12" x2="17" y2="12" />
               <line x1="7" y1="16" x2="13" y2="16" />
             </svg>
-            <strong style={{ fontSize: '0.98rem', color: '#f59e0b' }}>
+            <strong style={{ fontSize: '0.98rem', color: '#dfb15b' }}>
               Delete Specific Order by ID (Database Purge)
             </strong>
           </div>
@@ -333,7 +333,7 @@ export default function AdminCleaner() {
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <strong style={{ fontSize: '1.1rem', color: '#22c55e' }}>Rs {targetOrder.total}</strong>
-                  <span style={{ fontSize: '0.72rem', color: '#f59e0b', display: 'block', fontWeight: 700, marginTop: '2px' }}>
+                  <span style={{ fontSize: '0.72rem', color: '#dfb15b', display: 'block', fontWeight: 700, marginTop: '2px' }}>
                     Status: {targetOrder.status.toUpperCase()}
                   </span>
                 </div>
@@ -431,7 +431,7 @@ export default function AdminCleaner() {
             style={{
               minHeight: '44px',
               padding: '0.55rem 1rem',
-              background: olderThan30Days.length > 0 ? '#f59e0b' : 'rgba(255,255,255,0.08)',
+              background: olderThan30Days.length > 0 ? '#dfb15b' : 'rgba(255,255,255,0.08)',
               color: olderThan30Days.length > 0 ? '#111' : '#71717a',
               border: 'none',
               borderRadius: '10px',
@@ -465,7 +465,7 @@ export default function AdminCleaner() {
             style={{
               minHeight: '44px',
               padding: '0.55rem 1rem',
-              background: olderThan7Days.length > 0 ? '#d97706' : 'rgba(255,255,255,0.08)',
+              background: olderThan7Days.length > 0 ? '#c89838' : 'rgba(255,255,255,0.08)',
               color: olderThan7Days.length > 0 ? '#fff' : '#71717a',
               border: 'none',
               borderRadius: '10px',

@@ -190,7 +190,7 @@ export default function Support() {
       <div
         className="tfg-glass-elevated"
         style={{
-          border: '1.5px solid rgba(245,158,11,0.3)',
+          border: '1.5px solid rgba(223, 177, 91,0.3)',
           borderRadius: '24px',
           padding: '1.75rem',
           marginBottom: '1.5rem',
@@ -332,15 +332,15 @@ export default function Support() {
             <div
               className="tfg-glass-card"
               style={{
-                border: '1px solid rgba(245,158,11,0.25)',
+                border: '1px solid rgba(223, 177, 91,0.25)',
                 borderRadius: '18px',
                 padding: '1.25rem',
               }}
             >
-              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(245,158,11,0.15)', display: 'grid', placeItems: 'center', marginBottom: '0.75rem' }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(223, 177, 91,0.15)', display: 'grid', placeItems: 'center', marginBottom: '0.75rem' }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </div>
-              <strong style={{ fontSize: '1rem', color: '#f59e0b', display: 'block', marginBottom: '4px' }}>
+              <strong style={{ fontSize: '1rem', color: '#dfb15b', display: 'block', marginBottom: '4px' }}>
                 Service Timings
               </strong>
               <span style={{ fontSize: '0.85rem', color: '#fafaf9', fontWeight: 800, display: 'block', marginBottom: '4px' }}>
@@ -399,7 +399,7 @@ export default function Support() {
                 href={GOOGLE_MAPS_LOCATION_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ color: '#f59e0b', fontSize: '0.78rem', fontWeight: 800, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '0.5rem' }}
+                style={{ color: '#dfb15b', fontSize: '0.78rem', fontWeight: 800, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '0.5rem' }}
               >
                 Open in Google Maps &rarr;
               </a>
@@ -418,7 +418,7 @@ export default function Support() {
                     key={o.id}
                     className="tfg-glass-card"
                     style={{
-                      border: '1px solid rgba(245,158,11,0.25)',
+                      border: '1px solid rgba(223, 177, 91,0.25)',
                       borderRadius: '16px',
                       padding: '1rem',
                       minWidth: '240px',
@@ -426,7 +426,7 @@ export default function Support() {
                     }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-                      <strong style={{ fontSize: '0.85rem', color: '#f59e0b' }}>#{formatOrderId(o.id)}</strong>
+                      <strong style={{ fontSize: '0.85rem', color: '#dfb15b' }}>#{formatOrderId(o.id)}</strong>
                       <span style={{ fontSize: '0.78rem', color: '#22c55e', fontWeight: 800 }}>â‚¹{o.total}</span>
                     </div>
                     <span style={{ fontSize: '0.72rem', color: '#a1a1aa', display: 'block', marginBottom: '0.75rem' }}>
@@ -480,7 +480,7 @@ export default function Support() {
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <strong style={{ fontSize: '0.85rem', color: '#fafaf9' }}>{faq.q}</strong>
-                    <span style={{ color: '#f59e0b', fontSize: '0.85rem' }}>{expandedFaq === idx ? 'â–²' : 'â–¼'}</span>
+                    <span style={{ color: '#dfb15b', fontSize: '0.85rem' }}>{expandedFaq === idx ? 'â–²' : 'â–¼'}</span>
                   </div>
                   {expandedFaq === idx && (
                     <p style={{ color: '#a1a1aa', fontSize: '0.8rem', margin: '0.65rem 0 0', lineHeight: 1.5, borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '0.5rem' }}>
@@ -514,7 +514,7 @@ export default function Support() {
             padding: '0.6rem',
             borderRadius: '10px',
             border: 'none',
-            background: tab === 'hub' ? '#f59e0b' : 'transparent',
+            background: tab === 'hub' ? '#dfb15b' : 'transparent',
             color: tab === 'hub' ? '#18181b' : '#a1a1aa',
             fontWeight: 800,
             fontSize: '0.82rem',
@@ -533,7 +533,7 @@ export default function Support() {
             padding: '0.6rem',
             borderRadius: '10px',
             border: 'none',
-            background: tab === 'create' ? '#f59e0b' : 'transparent',
+            background: tab === 'create' ? '#dfb15b' : 'transparent',
             color: tab === 'create' ? '#18181b' : '#a1a1aa',
             fontWeight: 800,
             fontSize: '0.82rem',
@@ -552,7 +552,7 @@ export default function Support() {
             padding: '0.6rem',
             borderRadius: '10px',
             border: 'none',
-            background: tab === 'chat' ? '#f59e0b' : 'transparent',
+            background: tab === 'chat' ? '#dfb15b' : 'transparent',
             color: tab === 'chat' ? '#18181b' : '#a1a1aa',
             fontWeight: 800,
             fontSize: '0.82rem',
@@ -666,7 +666,7 @@ export default function Support() {
                     }}
                     style={{
                       background: '#1c1917',
-                      border: '1px solid rgba(245,158,11,0.25)',
+                      border: '1px solid rgba(223, 177, 91,0.25)',
                       borderRadius: '16px',
                       padding: '1rem',
                       minWidth: '220px',
@@ -675,7 +675,7 @@ export default function Support() {
                     }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-                      <strong style={{ fontSize: '0.85rem', color: '#f59e0b' }}>#{formatOrderId(o.id)}</strong>
+                      <strong style={{ fontSize: '0.85rem', color: '#dfb15b' }}>#{formatOrderId(o.id)}</strong>
                       <span style={{ fontSize: '0.78rem', color: '#22c55e', fontWeight: 800 }}>â‚¹{o.total}</span>
                     </div>
                     <span style={{ fontSize: '0.72rem', color: '#a1a1aa', display: 'block', marginBottom: '0.5rem' }}>
@@ -713,7 +713,7 @@ export default function Support() {
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <strong style={{ fontSize: '0.85rem', color: '#fafaf9' }}>{faq.q}</strong>
-                    <span style={{ color: '#f59e0b', fontSize: '1rem' }}>{expandedFaq === idx ? 'â–²' : 'â–¼'}</span>
+                    <span style={{ color: '#dfb15b', fontSize: '1rem' }}>{expandedFaq === idx ? 'â–²' : 'â–¼'}</span>
                   </div>
                   {expandedFaq === idx && (
                     <p style={{ color: '#a1a1aa', fontSize: '0.8rem', margin: '0.65rem 0 0', lineHeight: 1.5, borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '0.5rem' }}>
@@ -755,9 +755,9 @@ export default function Support() {
                   style={{
                     padding: '0.45rem 0.85rem',
                     borderRadius: '20px',
-                    border: category === c.id ? '1.5px solid #f59e0b' : '1px solid #3f3f46',
-                    background: category === c.id ? 'rgba(245,158,11,0.15)' : '#27272a',
-                    color: category === c.id ? '#f59e0b' : '#d6d3d1',
+                    border: category === c.id ? '1.5px solid #dfb15b' : '1px solid #3f3f46',
+                    background: category === c.id ? 'rgba(223, 177, 91,0.15)' : '#27272a',
+                    color: category === c.id ? '#dfb15b' : '#d6d3d1',
                     fontWeight: category === c.id ? 800 : 500,
                     fontSize: '0.78rem',
                     cursor: 'pointer',
@@ -924,15 +924,15 @@ export default function Support() {
             disabled={submitting}
             style={{
               padding: '0.85rem',
-              backgroundColor: '#d97706',
-              backgroundImage: 'linear-gradient(135deg, #f59e0b, #d97706)',
+              backgroundColor: '#c89838',
+              backgroundImage: 'linear-gradient(135deg, #dfb15b, #c89838)',
               color: '#111',
               border: 'none',
               borderRadius: '12px',
               fontWeight: 900,
               fontSize: '0.95rem',
               cursor: submitting ? 'not-allowed' : 'pointer',
-              boxShadow: '0 4px 14px rgba(245,158,11,0.3)',
+              boxShadow: '0 4px 14px rgba(223, 177, 91,0.3)',
               marginTop: '0.5rem',
             }}
           >
@@ -974,7 +974,7 @@ export default function Support() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#f59e0b',
+                      color: '#dfb15b',
                       fontSize: '1.2rem',
                       cursor: 'pointer',
                       padding: 0,
@@ -995,9 +995,9 @@ export default function Support() {
 
                 <span
                   style={{
-                    background: selectedTicket.status === 'resolved' ? 'rgba(34,197,94,0.15)' : 'rgba(245,158,11,0.15)',
-                    color: selectedTicket.status === 'resolved' ? '#22c55e' : '#f59e0b',
-                    border: `1px solid ${selectedTicket.status === 'resolved' ? '#22c55e' : '#f59e0b'}44`,
+                    background: selectedTicket.status === 'resolved' ? 'rgba(34,197,94,0.15)' : 'rgba(223, 177, 91,0.15)',
+                    color: selectedTicket.status === 'resolved' ? '#22c55e' : '#dfb15b',
+                    border: `1px solid ${selectedTicket.status === 'resolved' ? '#22c55e' : '#dfb15b'}44`,
                     padding: '3px 8px',
                     borderRadius: '12px',
                     fontSize: '0.7rem',
@@ -1035,7 +1035,7 @@ export default function Support() {
                       <div
                         style={{
                           fontSize: '0.7rem',
-                          color: isMe ? '#f59e0b' : '#38bdf8',
+                          color: isMe ? '#dfb15b' : '#38bdf8',
                           marginBottom: '2px',
                           fontWeight: 700,
                           display: 'flex',
@@ -1049,7 +1049,7 @@ export default function Support() {
                       <div
                         style={{
                           background: isMe
-                            ? 'linear-gradient(135deg, #d97706, #b45309)'
+                            ? 'linear-gradient(135deg, #c89838, #b45309)'
                             : '#1f1f23',
                           color: '#fafaf9',
                           border: isMe ? 'none' : '1px solid rgba(255,255,255,0.08)',
@@ -1104,8 +1104,8 @@ export default function Support() {
                   type="submit"
                   disabled={sendingMsg || !chatInput.trim()}
                   style={{
-                    backgroundColor: '#d97706',
-                    backgroundImage: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                    backgroundColor: '#c89838',
+                    backgroundImage: 'linear-gradient(135deg, #dfb15b, #c89838)',
                     color: '#111',
                     border: 'none',
                     padding: '0.65rem 1.1rem',
@@ -1124,12 +1124,12 @@ export default function Support() {
               {!userPhone.trim() ? (
                 <div style={{ textAlign: 'center', padding: '3rem 1rem', background: '#1c1917', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.08)' }}>
                   <p style={{ color: '#a1a1aa' }}>Please sign in or enter your mobile number to view your inquiries.</p>
-                  <Link to="/auth" style={{ color: '#f59e0b', fontWeight: 800, textDecoration: 'none' }}>
+                  <Link to="/auth" style={{ color: '#dfb15b', fontWeight: 800, textDecoration: 'none' }}>
                     Sign In &rarr;
                   </Link>
                 </div>
               ) : loadingTickets ? (
-                <div style={{ textAlign: 'center', padding: '3rem', color: '#f59e0b' }}>
+                <div style={{ textAlign: 'center', padding: '3rem', color: '#dfb15b' }}>
                   Loading your inquiries...
                 </div>
               ) : myTickets.length === 0 ? (
@@ -1144,7 +1144,7 @@ export default function Support() {
                     type="button"
                     onClick={() => setTab('create')}
                     style={{
-                      background: '#f59e0b',
+                      background: '#dfb15b',
                       color: '#111',
                       border: 'none',
                       padding: '0.5rem 1rem',
@@ -1160,7 +1160,7 @@ export default function Support() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                   {myTickets.map((t: SupportTicket) => {
                     const statusBadge: Record<string, { bg: string; color: string; label: string }> = {
-                      open: { bg: 'rgba(245,158,11,0.15)', color: '#f59e0b', label: 'Open' },
+                      open: { bg: 'rgba(223, 177, 91,0.15)', color: '#dfb15b', label: 'Open' },
                       in_progress: { bg: 'rgba(56,189,248,0.15)', color: '#38bdf8', label: 'Active Chat' },
                       resolved: { bg: 'rgba(34,197,94,0.15)', color: '#22c55e', label: 'Resolved' },
                     }
@@ -1198,7 +1198,7 @@ export default function Support() {
 
                         {lastMsg && (
                           <div style={{ background: '#121214', borderRadius: '8px', padding: '0.45rem 0.75rem', fontSize: '0.78rem', color: '#d6d3d1', marginTop: '0.4rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                            <span style={{ color: lastMsg.sender === 'customer' ? '#f59e0b' : '#38bdf8', fontWeight: 700, marginRight: '4px' }}>
+                            <span style={{ color: lastMsg.sender === 'customer' ? '#dfb15b' : '#38bdf8', fontWeight: 700, marginRight: '4px' }}>
                               {lastMsg.senderName}:
                             </span>
                             {lastMsg.text}
@@ -1209,7 +1209,7 @@ export default function Support() {
                           <span style={{ fontSize: '0.75rem', color: '#71717a' }}>
                             {msgs.length} message(s)
                           </span>
-                          <span style={{ color: '#f59e0b', fontWeight: 800, fontSize: '0.8rem' }}>
+                          <span style={{ color: '#dfb15b', fontWeight: 800, fontSize: '0.8rem' }}>
                             Open Conversation &rarr;
                           </span>
                         </div>

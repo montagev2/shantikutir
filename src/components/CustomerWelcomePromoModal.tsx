@@ -130,12 +130,12 @@ export default function CustomerWelcomePromoModal() {
         className="tfg-glass-elevated"
         style={{
           background: 'linear-gradient(145deg, rgba(28, 25, 23, 0.98), rgba(18, 18, 20, 0.98))',
-          border: '1.5px solid rgba(245, 158, 11, 0.5)',
+          border: '1.5px solid rgba(223, 177, 91, 0.5)',
           borderRadius: '24px',
           padding: '1.75rem',
           maxWidth: '440px',
           width: '100%',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.2)',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(223, 177, 91, 0.2)',
           textAlign: 'center',
           position: 'relative',
         }}
@@ -166,7 +166,7 @@ export default function CustomerWelcomePromoModal() {
         </button>
 
         {/* Exclusive Badge */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(245, 158, 11, 0.15)', border: '1px solid rgba(245, 158, 11, 0.4)', borderRadius: '20px', padding: '4px 14px', fontSize: '0.74rem', fontWeight: 800, color: '#f59e0b', margin: '0 auto 1rem' }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(223, 177, 91, 0.15)', border: '1px solid rgba(223, 177, 91, 0.4)', borderRadius: '20px', padding: '4px 14px', fontSize: '0.74rem', fontWeight: 800, color: '#dfb15b', margin: '0 auto 1rem' }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" />
             <line x1="7" y1="7" x2="7.01" y2="7" />
@@ -187,14 +187,14 @@ export default function CustomerWelcomePromoModal() {
         {/* Value Callout Card */}
         <div
           style={{
-            background: 'rgba(245, 158, 11, 0.08)',
-            border: '1px dashed rgba(245, 158, 11, 0.5)',
+            background: 'rgba(223, 177, 91, 0.08)',
+            border: '1px dashed rgba(223, 177, 91, 0.5)',
             borderRadius: '16px',
             padding: '1rem',
             marginBottom: '1rem',
           }}
         >
-          <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#f59e0b', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 900, color: '#dfb15b', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
             {promoCoupon.discount_type === 'flat' ? `Flat Rs ${promoCoupon.discount_value} OFF` : `${promoCoupon.discount_value}% OFF`}
           </div>
           {promoCoupon.min_order > 0 ? (
@@ -260,14 +260,14 @@ export default function CustomerWelcomePromoModal() {
             style={{
               width: '100%',
               minHeight: '46px',
-              background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+              background: 'linear-gradient(135deg, #dfb15b, #c89838)',
               border: 'none',
               borderRadius: '12px',
               color: '#18181b',
               fontWeight: 900,
               fontSize: '0.92rem',
               cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(245, 158, 11, 0.35)',
+              boxShadow: '0 4px 16px rgba(223, 177, 91, 0.35)',
               touchAction: 'manipulation',
             }}
           >

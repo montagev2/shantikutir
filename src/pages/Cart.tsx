@@ -16,12 +16,12 @@ export default function Cart() {
             height: '80px',
             margin: '0 auto 1.25rem',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(245, 158, 11, 0.16) 0%, rgba(245, 158, 11, 0.03) 70%, transparent 100%)',
-            border: '1.5px solid rgba(245, 158, 11, 0.3)',
+            background: 'radial-gradient(circle, rgba(223, 177, 91, 0.16) 0%, rgba(223, 177, 91, 0.03) 70%, transparent 100%)',
+            border: '1.5px solid rgba(223, 177, 91, 0.3)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 8px 30px rgba(245, 158, 11, 0.12)',
+            boxShadow: '0 8px 30px rgba(223, 177, 91, 0.12)',
           }}
         >
           <svg
@@ -29,7 +29,7 @@ export default function Cart() {
             height="38"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#f59e0b"
+            stroke="#dfb15b"
             strokeWidth="1.75"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -52,13 +52,13 @@ export default function Cart() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '0.5rem',
-            background: '#f59e0b',
+            background: '#dfb15b',
             color: '#18181b',
             padding: '0.75rem 1.5rem',
             borderRadius: '10px',
             textDecoration: 'none',
             fontWeight: 800,
-            boxShadow: '0 4px 14px rgba(245, 158, 11, 0.25)',
+            boxShadow: '0 4px 14px rgba(223, 177, 91, 0.25)',
           }}
         >
           {lang === 'bn' ? 'মেনু দেখুন ->' : 'Explore Menu ->'}
@@ -98,15 +98,15 @@ export default function Cart() {
       {/* Free Delivery & Minimum Order Progress Badge */}
       <div
         style={{
-          background: isMinMet ? 'rgba(34, 197, 94, 0.12)' : 'rgba(245, 158, 11, 0.12)',
-          border: `1.5px solid ${isMinMet ? 'rgba(34, 197, 94, 0.35)' : 'rgba(245, 158, 11, 0.35)'}`,
+          background: isMinMet ? 'rgba(34, 197, 94, 0.12)' : 'rgba(223, 177, 91, 0.12)',
+          border: `1.5px solid ${isMinMet ? 'rgba(34, 197, 94, 0.35)' : 'rgba(223, 177, 91, 0.35)'}`,
           borderRadius: '14px',
           padding: '0.85rem 1rem',
           marginBottom: '1rem',
         }}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem', flexWrap: 'wrap', gap: '0.4rem' }}>
-          <strong style={{ fontSize: '0.86rem', color: isMinMet ? '#4ade80' : '#fbbf24', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <strong style={{ fontSize: '0.86rem', color: isMinMet ? '#4ade80' : '#f3d085', display: 'flex', alignItems: 'center', gap: '6px' }}>
             <span>
               {isMinMet
                 ? (lang === 'bn' ? `ফ্রি হোম ডেলিভারি যোগ্য (Rs.${MIN_ORDER_AMOUNT}+ অর্ডার)` : `Free Home Delivery Unlocked (Orders Rs.${MIN_ORDER_AMOUNT}+)`)
@@ -124,7 +124,7 @@ export default function Cart() {
             style={{
               height: '100%',
               width: `${minProgress}%`,
-              background: isMinMet ? 'linear-gradient(90deg, #22c55e, #10b981)' : 'linear-gradient(90deg, #f59e0b, #d97706)',
+              background: isMinMet ? 'linear-gradient(90deg, #22c55e, #10b981)' : 'linear-gradient(90deg, #dfb15b, #c89838)',
               borderRadius: '9999px',
               transition: 'width 0.3s ease',
             }}
@@ -205,7 +205,7 @@ export default function Cart() {
                   <strong style={{ color: '#fafaf9', fontSize: '0.95rem', display: 'block' }}>
                     {lang === 'bn' ? item.bnName || item.name_bn || item.name : item.name}
                   </strong>
-                  <span style={{ color: '#f59e0b', fontSize: '0.78rem', fontWeight: 600 }}>
+                  <span style={{ color: '#dfb15b', fontSize: '0.78rem', fontWeight: 600 }}>
                     {portionLabel} · Rs.{unitPrice}
                   </span>
                 </div>
@@ -218,7 +218,7 @@ export default function Cart() {
                     type="button"
                     onClick={() => updateCartQty(prodId, portionKey, qty - 1)}
                     aria-label="Decrease quantity"
-                    style={{ background: 'transparent', border: 'none', color: '#f59e0b', fontSize: '1.2rem', fontWeight: 800, cursor: 'pointer', width: '32px', height: '32px', minWidth: '32px', display: 'grid', placeItems: 'center', touchAction: 'manipulation' }}
+                    style={{ background: 'transparent', border: 'none', color: '#dfb15b', fontSize: '1.2rem', fontWeight: 800, cursor: 'pointer', width: '32px', height: '32px', minWidth: '32px', display: 'grid', placeItems: 'center', touchAction: 'manipulation' }}
                   >
                     -
                   </button>
@@ -227,7 +227,7 @@ export default function Cart() {
                     type="button"
                     onClick={() => updateCartQty(prodId, portionKey, qty + 1)}
                     aria-label="Increase quantity"
-                    style={{ background: 'transparent', border: 'none', color: '#f59e0b', fontSize: '1.2rem', fontWeight: 800, cursor: 'pointer', width: '32px', height: '32px', minWidth: '32px', display: 'grid', placeItems: 'center', touchAction: 'manipulation' }}
+                    style={{ background: 'transparent', border: 'none', color: '#dfb15b', fontSize: '1.2rem', fontWeight: 800, cursor: 'pointer', width: '32px', height: '32px', minWidth: '32px', display: 'grid', placeItems: 'center', touchAction: 'manipulation' }}
                   >
                     +
                   </button>
@@ -263,7 +263,7 @@ export default function Cart() {
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '0.75rem', marginTop: '0.5rem', fontSize: '1.1rem' }}>
           <strong style={{ color: '#fafaf9' }}>Total Bill</strong>
-          <strong style={{ color: '#f59e0b' }}>Rs.{cartTotal}</strong>
+          <strong style={{ color: '#dfb15b' }}>Rs.{cartTotal}</strong>
         </div>
       </div>
 
@@ -276,14 +276,14 @@ export default function Cart() {
               style={{
                 display: 'block',
                 textAlign: 'center',
-                background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                background: 'linear-gradient(135deg, #dfb15b 0%, #c89838 100%)',
                 color: '#18181b',
                 padding: '0.85rem',
                 borderRadius: '10px',
                 textDecoration: 'none',
                 fontWeight: 800,
                 fontSize: '1rem',
-                boxShadow: '0 4px 14px rgba(245, 158, 11, 0.3)',
+                boxShadow: '0 4px 14px rgba(223, 177, 91, 0.3)',
               }}
             >
               {lang === 'bn'
@@ -302,9 +302,9 @@ export default function Cart() {
             style={{
               display: 'block',
               textAlign: 'center',
-              background: 'rgba(245, 158, 11, 0.12)',
-              border: '1.5px dashed #f59e0b',
-              color: '#fbbf24',
+              background: 'rgba(223, 177, 91, 0.12)',
+              border: '1.5px dashed #dfb15b',
+              color: '#f3d085',
               padding: '0.85rem',
               borderRadius: '10px',
               textDecoration: 'none',

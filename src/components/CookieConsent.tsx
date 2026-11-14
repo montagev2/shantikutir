@@ -55,10 +55,10 @@ export default function CookieConsent() {
         background: 'rgba(18, 18, 20, 0.96)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        border: '1.5px solid rgba(245, 158, 11, 0.45)',
+        border: '1.5px solid rgba(223, 177, 91, 0.45)',
         borderRadius: '20px',
         padding: '1.25rem 1.35rem',
-        boxShadow: '0 20px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(245, 158, 11, 0.15)',
+        boxShadow: '0 20px 50px rgba(0, 0, 0, 0.75), 0 0 25px rgba(223, 177, 91, 0.15)',
         color: '#fafaf9',
         animation: 'slideUp 0.35s ease-out',
       }}
@@ -70,18 +70,18 @@ export default function CookieConsent() {
             placeItems: 'center',
             width: '36px',
             height: '36px',
-            background: 'rgba(245, 158, 11, 0.12)',
+            background: 'rgba(223, 177, 91, 0.12)',
             borderRadius: '12px',
-            border: '1px solid rgba(245, 158, 11, 0.25)',
+            border: '1px solid rgba(223, 177, 91, 0.25)',
             flexShrink: 0,
           }}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#dfb15b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
 
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.3rem' }}>
-            <strong style={{ fontSize: '0.98rem', color: '#f59e0b', fontWeight: 900, letterSpacing: '0.02em' }}>
+            <strong style={{ fontSize: '0.98rem', color: '#dfb15b', fontWeight: 900, letterSpacing: '0.02em' }}>
               Cookie & Data Privacy Notice
             </strong>
             <span
@@ -118,7 +118,7 @@ export default function CookieConsent() {
               }}
             >
               <div style={{ marginBottom: '0.4rem' }}>
-                <b style={{ color: '#f59e0b' }}>â€¢ Essential Storage:</b> Keeps you logged in as customer, staff, or rider; preserves active cart.
+                <b style={{ color: '#dfb15b' }}>â€¢ Essential Storage:</b> Keeps you logged in as customer, staff, or rider; preserves active cart.
               </div>
               <div style={{ marginBottom: '0.4rem' }}>
                 <b style={{ color: '#38bdf8' }}>â€¢ Functional Storage:</b> Remembers language choice (EN/BN) and sound alerts for kitchen orders.
@@ -134,7 +134,7 @@ export default function CookieConsent() {
               type="button"
               onClick={() => saveConsent('all')}
               style={{
-                background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                background: 'linear-gradient(135deg, #dfb15b, #c89838)',
                 color: '#18181b',
                 border: 'none',
                 borderRadius: '10px',
@@ -142,7 +142,7 @@ export default function CookieConsent() {
                 fontSize: '0.82rem',
                 fontWeight: 800,
                 cursor: 'pointer',
-                boxShadow: '0 4px 14px rgba(245, 158, 11, 0.35)',
+                boxShadow: '0 4px 14px rgba(223, 177, 91, 0.35)',
                 transition: 'transform 0.15s ease',
               }}
             >
@@ -187,14 +187,14 @@ export default function CookieConsent() {
             <a
               href="/legal?tab=privacy"
               style={{
-                color: '#f59e0b',
+                color: '#dfb15b',
                 fontSize: '0.74rem',
                 textDecoration: 'none',
                 fontWeight: 700,
                 padding: '4px 8px',
                 borderRadius: '6px',
-                background: 'rgba(245, 158, 11, 0.1)',
-                border: '1px solid rgba(245, 158, 11, 0.25)',
+                background: 'rgba(223, 177, 91, 0.1)',
+                border: '1px solid rgba(223, 177, 91, 0.25)',
               }}
             >
               Privacy Policy â†’

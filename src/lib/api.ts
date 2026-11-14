@@ -393,3 +393,49 @@ export function clearAppCacheAndReset(): void {
 export async function deleteSupportTicketApi(_id: string): Promise<boolean> {
   return true
 }
+
+export async function fetchOrderByIdOrPhoneApi(query: string): Promise<any | null> {
+  try {
+    const cleanQ = query.trim()
+    if (!cleanQ) return null
+    const { data, error } = await supabase.rpc('track_order_public', { p_order_id: cleanQ })
+    if (!error && data?.found && data?.order) {
+      const d = data.order
+      const items = d.order_items || data.items || []
+      return {
+        id: d.id,
+        userId: d.user_id,
+        userName: d.user_name || d.customer_name,
+        phone: d.phone || d.customer_phone,
+        orderType: d.order_type || d.dining_mode || 'dine_in',
+        tableNo: d.table_no || d.table_number,
+        address: d.address || d.delivery_address || '',
+        pin: d.pin,
+        geoLat: d.geo_lat || d.delivery_lat,
+        geoLng: d.geo_lng || d.delivery_lng,
+        items: items.map((it: any) => ({
+          productId: it.product_id,
+          name: it.product_name,
+          portion: it.portion || it.size_label || 'B',
+          qty: it.quantity || it.qty || 1,
+          unitPrice: it.price || it.unit_price || 0,
+        })),
+        subtotal: d.subtotal || d.total,
+        deliveryFee: d.delivery_fee || 0,
+        discountAmount: d.discount_amount || 0,
+        total: d.total,
+        status: d.status,
+        advanceAmount: d.advance_amount || 0,
+        paymentMethod: d.payment_method || 'cash',
+        utr: d.utr_number || d.utr,
+        utrVerified: d.utr_verified ?? false,
+        deliveryOtp: d.delivery_otp || d.otp_code,
+        createdAt: d.created_at,
+      }
+    }
+    return null
+  } catch (err) {
+    console.error('fetchOrderByIdOrPhoneApi error', err)
+    return null
+  }
+}
