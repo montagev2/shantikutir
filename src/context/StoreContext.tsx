@@ -201,14 +201,20 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         .order('sort_order')
 
       if (data && !error) {
-        const enriched = (data as Product[]).map((p) => ({
-          ...p,
-          bnName: p.name_bn || p.name,
-          pA: p.price_a,
-          pB: p.price_b ?? p.price_a,
-          pC: p.price_c ?? p.price_a,
-          imageUrl: p.image_url || undefined,
-        }))
+        const enriched = (data as Product[]).map((p) => {
+          let img = p.image_url || undefined
+          if (img && (img.includes('the-food-garden') || img.includes('tfg'))) {
+            img = '/dishes/mutton-kacchi-dum-biryani.jpg'
+          }
+          return {
+            ...p,
+            bnName: p.name_bn || p.name,
+            pA: p.price_a,
+            pB: p.price_b ?? p.price_a,
+            pC: p.price_c ?? p.price_a,
+            imageUrl: img,
+          }
+        })
         dispatch({ type: 'SET_PRODUCTS', products: enriched })
         safeSetJSON('sk_products_cache', enriched)
       } else {

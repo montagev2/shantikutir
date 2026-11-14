@@ -138,6 +138,13 @@ function FoodCard({
             className="food-img-hover"
             style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
             loading="lazy"
+            onError={(e) => {
+              const target = e.currentTarget
+              if (!target.dataset.fallback) {
+                target.dataset.fallback = '1'
+                target.src = '/dishes/chicken-dum-biryani.jpg'
+              }
+            }}
           />
           <div
             style={{
@@ -430,6 +437,16 @@ function SignatureCard({
           className="food-img-hover"
           style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
           loading="lazy"
+          onError={(e) => {
+            const target = e.currentTarget
+            if (!target.dataset.fallback) {
+              target.dataset.fallback = '1'
+              target.src = '/dishes/mutton-kacchi-dum-biryani.jpg'
+            } else if (target.dataset.fallback === '1') {
+              target.dataset.fallback = '2'
+              target.src = '/dishes/chicken-dum-biryani.jpg'
+            }
+          }}
         />
         <div
           style={{
